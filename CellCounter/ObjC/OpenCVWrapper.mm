@@ -21,6 +21,66 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 @end
 
 @implementation OpenCVWrapper
+- (void) createCameraWithParentView:(UIImageView*) parentView {
+    cvCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
+    cvCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+    cvCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    cvCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    cvCamera.defaultFPS = 30;
+    cvCamera.grayscaleMode = NO;
+    cvCamera.delegate = self;
+}
+
+- (void) start{
+    [cvCamera start];
+}
+
+- (void) adjustParentViewAspect { // カメラ画像を表示するビューのアスペクト比を調整する
+    //カメラの解像度を調べる
+    AVCaptureInput *input = [cvCamera.captureSession.inputs objectAtIndex:0];
+    AVCaptureInputPort *port = [input.ports objectAtIndex:0];
+    CMFormatDescriptionRef formatDescription = port.formatDescription;
+    CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(formatDescription);
+    int cameraHeight = dimensions.width;
+    int cameraWidth = dimensions.height;
+    NSLog( @"dimensions=%dx%d", dimensions.width, dimensions.height );
+    if( cvCamera.parentView.layer.sublayers != nil )
+      {
+        CALayer *layer = [cvCamera.parentView.layer.sublayers objectAtIndex:0];
+        NSLog( @"[before] frame%@ position%@", NSStringFromCGRect(layer.frame), NSStringFromCGPoint(layer.position) );
+        //現在のアスペクト比
+        CGFloat ratiox = cameraWidth / layer.frame.size.width;
+        CGFloat ratioy = cameraHeight / layer.frame.size.height;
+        //contentModeによる表示サイズ/位置の決定
+        switch( cvCamera.parentView.contentMode )
+        {
+          case UIViewContentModeScaleAspectFit:
+            ratiox = (ratiox > ratioy)? ratiox : ratioy;
+            ratioy = ratiox;
+            break;
+          case UIViewContentModeScaleAspectFill:
+            ratiox = (ratiox < ratioy)? ratiox : ratioy;
+            ratioy = ratiox;
+            break;
+          default:
+            NSLog( @"does not support" );
+            break;
+        }
+        NSLog( @"ratio(%.3f,%.3f)", ratiox, ratioy );
+        //新しい表示サイズ/位置をセット
+        CGFloat x, y, w, h;
+        w = cameraWidth / ratiox;
+        h = cameraHeight / ratioy;
+        x = (layer.frame.size.width - w)/2;
+        y = (layer.frame.size.height - h)/2;
+        layer.frame = CGRectMake( x, y, w, h );
+        NSLog( @"[after] frame%@ position%@", NSStringFromCGRect(layer.frame), NSStringFromCGPoint(layer.position) );
+      }
+    }
+
+- (void) toggleCameraPosition {
+    [cvCamera switchCameras];
+}
 
 - (void)processImage:(cv::Mat &)image {
     cv::Mat image_copy;
@@ -34,6 +94,8 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 //        image = [self filterInRange:image];
     }
 }
+
+// Filters
 - (cv::Mat) filterInRange: (cv::Mat) src {
     cv::Mat hls = cv::Mat(src.rows , src.cols , CV_MAKETYPE(src.depth() , src.channels()));//;src.clone();
     cv::cvtColor(src , hls , CV_BGR2HLS);
@@ -101,24 +163,6 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     }
     cv::Canny(dst, dst, 10, 100, 3, true);
     return dst;
-}
-
-- (void) createCameraWithParentView:(UIImageView*) parentView {
-    cvCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
-    cvCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    cvCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
-    cvCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    cvCamera.defaultFPS = 30;
-    cvCamera.grayscaleMode = NO;
-    cvCamera.delegate = self;
-}
-
-- (void) start{
-    [cvCamera start];
-}
-
-- (void) toggleCameraPosition {
-    [cvCamera switchCameras];
 }
 
 - (cv::Mat) drawContours:(cv::Mat)mask  canvas:(cv::Mat)canvas

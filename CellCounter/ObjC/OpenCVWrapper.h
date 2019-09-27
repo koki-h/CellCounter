@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSDictionary *param;
 - (void) createCameraWithParentView:(UIImageView*) parentView;
 - (void) start;
+- (void) adjustParentViewAspect;
 - (void) toggleCameraPosition;
 @end
 

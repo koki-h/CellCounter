@@ -20,8 +20,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         openCv.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
+        }
     }
-
-
 }
 
