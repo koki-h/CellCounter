@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
+        openCv.param["slider_value"] = 128
+        openCv.param["filter_on"] = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
