@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var rootView: UIView!
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var controleView: UIView!
     let openCv = OpenCVWrapper()
 
     override func viewDidLoad() {
@@ -24,6 +26,15 @@ class ViewController: UIViewController {
         openCv.start()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
+        }
+        rootView.sendSubviewToBack(imgView)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if controleView.alpha == 1 {
+            controleView.alpha = 0
+        } else {
+            controleView.alpha = 1
         }
     }
 }
