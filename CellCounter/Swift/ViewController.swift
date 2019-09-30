@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     @IBOutlet var rootView: UIView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var controleView: UIView!
+    @IBOutlet weak var slThresholdLight: UISlider!
+    @IBOutlet weak var lblLightThreshld: UILabel!
+
     let openCv = OpenCVWrapper()
 
     override func viewDidLoad() {
@@ -19,6 +22,8 @@ class ViewController: UIViewController {
         openCv.createCamera(withParentView: imgView)
         openCv.param["slider_value"] = 128
         openCv.param["filter_on"] = true
+        slThresholdLight.value = Float(openCv.param["slider_value"] as! Int)
+        lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -37,5 +42,13 @@ class ViewController: UIViewController {
             controleView.alpha = 1
         }
     }
+
+    @IBAction func threshold_l_changed(_ sender: UISlider) {
+        openCv.param["slider_value"] = Int(sender.value)
+        lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
+        print(sender.value)
+    }
+
+
 }
 
