@@ -44,6 +44,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
+        openCv.lockParam() // openCV.paramの値は排他制御する（読み取り側が失敗する可能性があるため）
+        defer { openCv.unlockParam() }  // unlock を保証
         openCv.param["slider_value"] = Int(sender.value)
         lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
         print(sender.value)

@@ -17,10 +17,21 @@
 @interface
 OpenCVWrapper() <CvVideoCameraDelegate> {
     CvVideoCamera *cvCamera;
+    NSLock* _lock;
 }
 @end
 
 @implementation OpenCVWrapper
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        // NSLock インスタンスを生成します。
+        _lock = [[NSLock alloc] init];
+    }
+    return self;
+}
+
 - (void) createCameraWithParentView:(UIImageView*) parentView {
     cvCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
     cvCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
@@ -82,16 +93,30 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     [cvCamera switchCameras];
 }
 
+- (void) lockParam {
+    [_lock lock];
+}
+
+- (void) unlockParam {
+    [_lock unlock];
+}
+
 - (void)processImage:(cv::Mat &)image {
-    cv::Mat image_copy;
-    int slider_value = [[_param objectForKey: @"slider_value"] intValue];
-    bool filter_on = [[_param objectForKey:@"filter_on"] boolValue];
-    if (filter_on) {
-//        image = [self filterCanny:image slider_value:slider_value];            //Canny境界検出
-//        image = [self filterCannyOverlay:image slider_value:slider_value];         //Cannyで検出した境界を元画像に重ねる
-//        image = [self filterLightnessBinalized:image slider_value:slider_value]; //明るさによる二値化
-        image = [self filterLightnessContour:image slider_value:slider_value];   //明るさによって二値化し、境界を描画
-//        image = [self filterInRange:image];
+    [self lockParam]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
+    @try {
+        cv::Mat image_copy;
+        int slider_value = [[_param objectForKey: @"slider_value"] intValue];
+        bool filter_on = [[_param objectForKey:@"filter_on"] boolValue];
+        if (filter_on) {
+            //        image = [self filterCanny:image slider_value:slider_value];            //Canny境界検出
+            //        image = [self filterCannyOverlay:image slider_value:slider_value];         //Cannyで検出した境界を元画像に重ねる
+            //        image = [self filterLightnessBinalized:image slider_value:slider_value]; //明るさによる二値化
+            image = [self filterLightnessContour:image slider_value:slider_value];   //明るさによって二値化し、境界を描画
+            //        image = [self filterInRange:image];
+        }
+    }
+    @finally {
+        [self unlockParam];
     }
 }
 
