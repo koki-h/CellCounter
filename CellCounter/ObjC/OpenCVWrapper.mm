@@ -55,29 +55,27 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     int cameraHeight = dimensions.width;
     int cameraWidth = dimensions.height;
     NSLog( @"dimensions=%dx%d", dimensions.width, dimensions.height );
-    if( cvCamera.parentView.layer.sublayers != nil )
-      {
+    if( cvCamera.parentView.layer.sublayers != nil ){
         CALayer *layer = [cvCamera.parentView.layer.sublayers objectAtIndex:0];
-        NSLog( @"[before] frame%@ position%@", NSStringFromCGRect(layer.frame), NSStringFromCGPoint(layer.position) );
+//        NSLog( @"[before] frame%@ position%@", NSStringFromCGRect(layer.frame), NSStringFromCGPoint(layer.position) );
         //現在のアスペクト比
         CGFloat ratiox = cameraWidth / layer.frame.size.width;
         CGFloat ratioy = cameraHeight / layer.frame.size.height;
         //contentModeによる表示サイズ/位置の決定
-        switch( cvCamera.parentView.contentMode )
-        {
-          case UIViewContentModeScaleAspectFit:
-            ratiox = (ratiox > ratioy)? ratiox : ratioy;
-            ratioy = ratiox;
-            break;
-          case UIViewContentModeScaleAspectFill:
-            ratiox = (ratiox < ratioy)? ratiox : ratioy;
-            ratioy = ratiox;
-            break;
-          default:
-            NSLog( @"does not support" );
-            break;
+        switch( cvCamera.parentView.contentMode ){
+            case UIViewContentModeScaleAspectFit:
+                ratiox = (ratiox > ratioy)? ratiox : ratioy;
+                ratioy = ratiox;
+                break;
+            case UIViewContentModeScaleAspectFill:
+                ratiox = (ratiox < ratioy)? ratiox : ratioy;
+                ratioy = ratiox;
+                break;
+            default:
+                NSLog( @"does not support" );
+                break;
         }
-        NSLog( @"ratio(%.3f,%.3f)", ratiox, ratioy );
+//        NSLog( @"ratio(%.3f,%.3f)", ratiox, ratioy );
         //新しい表示サイズ/位置をセット
         CGFloat x, y, w, h;
         w = cameraWidth / ratiox;
@@ -85,9 +83,9 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
         x = (layer.frame.size.width - w)/2;
         y = (layer.frame.size.height - h)/2;
         layer.frame = CGRectMake( x, y, w, h );
-        NSLog( @"[after] frame%@ position%@", NSStringFromCGRect(layer.frame), NSStringFromCGPoint(layer.position) );
-      }
+//        NSLog( @"[after] frame%@ position%@", NSStringFromCGRect(layer.frame), NSStringFromCGPoint(layer.position) );
     }
+}
 
 - (void) toggleCameraPosition {
     [cvCamera switchCameras];
