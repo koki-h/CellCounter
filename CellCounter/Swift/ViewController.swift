@@ -6,7 +6,7 @@
 //  Copyright © 2019 koki. All rights reserved.
 //
 // DONE: 輪郭線のカウントを画面に表示する
-// TODO: 輪郭線面積の上下しきい値を設定できるようにする
+// DONE: 輪郭線面積の上下しきい値を設定できるようにする
 // TODO: しきい値の範囲を外れる面積の輪郭線をカウントから除外するようにする
 // TODO: パラメータを変更時に自動的に保存するようにする
 // TODO: 起動時に保存したパラメータを読み出すようにする
@@ -19,19 +19,26 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var controleView: UIView!
     @IBOutlet weak var dispCounterView: UIView!
-    @IBOutlet weak var slThresholdLight: UISlider!
-    @IBOutlet weak var lblLightThreshld: UILabel!
+    @IBOutlet weak var slLightThreshold: UISlider!
+    @IBOutlet weak var lblLightThreshold: UILabel!
+    @IBOutlet weak var slAreaThreshold: RangeSlider!
+    @IBOutlet weak var lblAreaThreshold: UILabel!
     @IBOutlet weak var lblCellCount: UILabel!
 
     let openCv = OpenCVWrapper()
-    var openCvParam: Dictionary = ["slider_value": 128]
+    var openCvParam: Dictionary = ["slider_value": 128,
+                                   "th_area_min":1000,
+                                   "th_area_max":4000]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
         openCv.delegate = self
-        slThresholdLight.value = Float(openCvParam["slider_value"]!)
-        lblLightThreshld.text = String(format:"%3d", openCvParam["slider_value"]!)
+        slLightThreshold.value = Float(openCvParam["slider_value"]!)
+        lblLightThreshold.text = String(format:"%3d", openCvParam["slider_value"]!)
+        slAreaThreshold.lowerValue = Double(Float(openCvParam["th_area_min"]!))
+        slAreaThreshold.upperValue = Double(Float(openCvParam["th_area_max"]!))
+        lblAreaThreshold.text = String(format:"%3d-%3d", openCvParam["th_area_min"]!, openCvParam["th_area_max"]!)
         self.lblCellCount.text = "0"
         openCv.setParam(openCvParam)
     }
@@ -67,7 +74,14 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
         openCvParam["slider_value"] = Int(sender.value)
-        lblLightThreshld.text = String(format:"%3d", openCvParam["slider_value"]!)
+        lblLightThreshold.text = String(format:"%3d", openCvParam["slider_value"]!)
+        openCv.setParam(openCvParam);
+    }
+
+    @IBAction func threshold_a_changed(_ sender: RangeSlider) {
+        openCvParam["th_area_min"] = Int(sender.lowerValue)
+        openCvParam["th_area_max"] = Int(sender.upperValue)
+        lblAreaThreshold.text = String(format:"%4d-%4d", openCvParam["th_area_min"]!, openCvParam["th_area_max"]!)
         openCv.setParam(openCvParam);
     }
 }
