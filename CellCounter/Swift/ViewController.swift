@@ -5,7 +5,7 @@
 //  Created by koki on 2019/09/27.
 //  Copyright © 2019 koki. All rights reserved.
 //
-// TODO: 輪郭線のカウントを画面に表示する
+// DONE: 輪郭線のカウントを画面に表示する
 // TODO: 輪郭線面積の上下しきい値を設定できるようにする
 // TODO: しきい値の範囲を外れる面積の輪郭線をカウントから除外するようにする
 // TODO: パラメータを変更時に自動的に保存するようにする
@@ -18,8 +18,10 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet var rootView: UIView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var controleView: UIView!
+    @IBOutlet weak var dispCounterView: UIView!
     @IBOutlet weak var slThresholdLight: UISlider!
     @IBOutlet weak var lblLightThreshld: UILabel!
+    @IBOutlet weak var lblCellCount: UILabel!
 
     let openCv = OpenCVWrapper()
     var openCvParam: Dictionary = ["slider_value": 128]
@@ -51,8 +53,9 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     }
 
     func didProcessImage(_ result: [AnyHashable : Any]) {
-        print("didProcessImage:")
-        print(result["contours_count"]!)
+        DispatchQueue.main.async {
+            self.lblCellCount.text = String(result["contours_count"] as! Int)
+        }
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
