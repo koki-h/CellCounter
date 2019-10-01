@@ -114,6 +114,8 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
             image = [self filterLightnessContour:image slider_value:slider_value];   //明るさによって二値化し、境界を描画
             //        image = [self filterInRange:image];
         }
+        NSDictionary *result = @{@"text": @"processed!"};
+        [self.delegate didProcessImage: result];
     }
     @finally {
         [self unlockParam];

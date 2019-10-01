@@ -13,8 +13,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol OpenCVWrapperDelegate <NSObject>
+@optional
+- (void)didProcessImage: (NSDictionary *)result;
+@end
+
 @interface OpenCVWrapper : NSObject
 @property NSDictionary *param;
+@property (weak, nonatomic) id <OpenCVWrapperDelegate> delegate;
 - (void) createCameraWithParentView:(UIImageView*) parentView;
 - (void) start;
 - (void) adjustParentViewAspect;

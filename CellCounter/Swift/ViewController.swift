@@ -14,7 +14,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet var rootView: UIView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var controleView: UIView!
@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         openCv.createCamera(withParentView: imgView)
         openCv.param["slider_value"] = 128
         openCv.param["filter_on"] = true
+        openCv.delegate = self
         slThresholdLight.value = Float(openCv.param["slider_value"] as! Int)
         lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
     }
@@ -49,6 +50,10 @@ class ViewController: UIViewController {
         }
     }
 
+    func didProcessImage(_ result: [AnyHashable : Any]) {
+        print("didProcessImage" + (result["text"] as!String))
+    }
+
     @IBAction func threshold_l_changed(_ sender: UISlider) {
         openCv.lockParam() // openCV.paramの値は排他制御する（読み取り側が失敗する可能性があるため）
         defer { openCv.unlockParam() }  // unlock を保証
@@ -56,7 +61,5 @@ class ViewController: UIViewController {
         lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
         print(sender.value)
     }
-
-
 }
 
