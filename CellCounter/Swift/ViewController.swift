@@ -22,14 +22,15 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet weak var lblLightThreshld: UILabel!
 
     let openCv = OpenCVWrapper()
+    var openCvParam: Dictionary = ["slider_value": 128]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
-        openCv.param["slider_value"] = 128
         openCv.delegate = self
-        slThresholdLight.value = Float(openCv.param["slider_value"] as! Int)
-        lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
+        slThresholdLight.value = Float(openCvParam["slider_value"]!)
+        lblLightThreshld.text = String(format:"%3d", openCvParam["slider_value"]!)
+        openCv.setParam(openCvParam)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -51,14 +52,13 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
 
     func didProcessImage(_ result: [AnyHashable : Any]) {
         print("didProcessImage:")
-        print(result["contours_count"])
+        print(result["contours_count"]!)
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
-        openCv.lockParam() // openCV.paramの値は排他制御する（読み取り側が失敗する可能性があるため）
-        defer { openCv.unlockParam() }  // unlock を保証
-        openCv.param["slider_value"] = Int(sender.value)
-        lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
+        openCvParam["slider_value"] = Int(sender.value)
+        lblLightThreshld.text = String(format:"%3d", openCvParam["slider_value"]!)
+        openCv.setParam(openCvParam);
     }
 }
 

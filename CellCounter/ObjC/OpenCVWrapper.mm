@@ -17,7 +17,9 @@
 @interface
 OpenCVWrapper() <CvVideoCameraDelegate> {
     CvVideoCamera *cvCamera;
-    NSLock* _lock;
+    NSLock *_lock;
+    NSDictionary *_param;
+
 }
 @end
 
@@ -91,16 +93,18 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     [cvCamera switchCameras];
 }
 
-- (void) lockParam {
-    [_lock lock];
-}
-
-- (void) unlockParam {
-    [_lock unlock];
+- (void)  setParam: (NSDictionary *) param {
+    [_lock lock]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
+    @try {
+        _param = param;
+    }
+    @finally {
+        [_lock unlock];
+    }
 }
 
 - (void)processImage:(cv::Mat &)image {
-    [self lockParam]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
+    [_lock lock]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
     @try {
         int slider_value = [[_param objectForKey: @"slider_value"] intValue];
         std::vector<std::vector<cv::Point>> contours =
@@ -112,7 +116,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
         [self.delegate didProcessImage: result];
     }
     @finally {
-        [self unlockParam];
+        [_lock unlock];
     }
 }
 
