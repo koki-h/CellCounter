@@ -26,6 +26,7 @@
 		E763EC02233DBECB008625FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E763EC01233DBECB008625FF /* Foundation.framework */; };
 		E763EC04233DBEE9008625FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E763EC03233DBEE9008625FF /* QuartzCore.framework */; };
 		E763EC06233DBEFF008625FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E763EC05233DBEFF008625FF /* UIKit.framework */; };
+		E79BAE9623431DC0005CEA57 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79BAE9523431DC0005CEA57 /* RangeSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		E763EC01233DBECB008625FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E763EC03233DBEE9008625FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E763EC05233DBEFF008625FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E79BAE9523431DC0005CEA57 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		E76A8815233DD36F00D2B239 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				E79BAE9523431DC0005CEA57 /* RangeSlider.swift */,
 				E763EBD5233DA8B4008625FF /* AppDelegate.swift */,
 				E763EBD7233DA8B4008625FF /* SceneDelegate.swift */,
 				E763EBD9233DA8B4008625FF /* ViewController.swift */,
@@ -221,6 +224,7 @@
 				E763EBEE233DBD81008625FF /* OpenCVWrapper.mm in Sources */,
 				E763EBDA233DA8B4008625FF /* ViewController.swift in Sources */,
 				E763EBD6233DA8B4008625FF /* AppDelegate.swift in Sources */,
+				E79BAE9623431DC0005CEA57 /* RangeSlider.swift in Sources */,
 				E763EBD8233DA8B4008625FF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
