@@ -32,6 +32,7 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         openCv.delegate = self
         slThresholdLight.value = Float(openCvParam["slider_value"]!)
         lblLightThreshld.text = String(format:"%3d", openCvParam["slider_value"]!)
+        self.lblCellCount.text = "0"
         openCv.setParam(openCvParam)
     }
 
@@ -45,10 +46,16 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if controleView.alpha == 1 {
-            controleView.alpha = 0
-        } else {
-            controleView.alpha = 1
+        // タッチした領域のUI要素を表示/非表示切り替えする
+        guard let touched = touches.first?.view else {
+            return
+        }
+        for subview in touched.subviews {
+            if subview.alpha == 1 {
+                subview.alpha = 0
+            } else {
+                subview.alpha = 1
+            }
         }
     }
 
