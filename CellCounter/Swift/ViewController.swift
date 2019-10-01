@@ -50,7 +50,8 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     }
 
     func didProcessImage(_ result: [AnyHashable : Any]) {
-        print("didProcessImage" + (result["text"] as!String))
+        print("didProcessImage:")
+        print(result["contours_count"])
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
@@ -58,7 +59,6 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         defer { openCv.unlockParam() }  // unlock を保証
         openCv.param["slider_value"] = Int(sender.value)
         lblLightThreshld.text = String(format:"%3d", openCv.param["slider_value"] as! Int)
-        print(sender.value)
     }
 }
 

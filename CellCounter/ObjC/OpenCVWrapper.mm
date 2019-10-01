@@ -104,12 +104,13 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (void)processImage:(cv::Mat &)image {
     [self lockParam]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
     @try {
-        cv::Mat image_copy;
         int slider_value = [[_param objectForKey: @"slider_value"] intValue];
         std::vector<std::vector<cv::Point>> contours =
             [self getLightnessContours:image slider_value:slider_value]; //明るさによって二値化し、境界線を取得
         image = [self drawContours:image contours:contours]; //境界線を描画
-        NSDictionary *result = @{@"text": @"processed!"};
+        // TODO: しきい値の範囲を外れる面積の輪郭線をカウントから除外するようにする
+        long cellcount = contours.size(); // 最終的に残った境界線の個数が細胞の個数となる
+        NSDictionary *result = @{@"contours_count":  [NSNumber numberWithLong: cellcount]};
         [self.delegate didProcessImage: result];
     }
     @finally {
@@ -129,7 +130,6 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 
 - (cv::Mat) drawContours:(cv::Mat)canvas contours:(std::vector<std::vector<cv::Point>>) contours
 {
-    //cv::Mat dst(mask.rows,mask.cols,CV_8UC1); // 結果保存用
     if (contours.size() > 1) {
         cv::drawContours(canvas, contours, -1, cv::Scalar(0,0,0),1);
     }
