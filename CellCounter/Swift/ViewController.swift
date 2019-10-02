@@ -27,7 +27,7 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet weak var lblCellCount: UILabel!
 
     let openCv = OpenCVWrapper()
-    var openCvParam: Dictionary = ["slider_value": 128,
+    var openCvParam: Dictionary = ["th_lightness": 128,
                                    "th_area_min":1000,
                                    "th_area_max":4000]
 
@@ -35,8 +35,8 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
         openCv.delegate = self
-        slLightThreshold.value = Float(openCvParam["slider_value"]!)
-        lblLightThreshold.text = String(format:"%3d", openCvParam["slider_value"]!)
+        slLightThreshold.value = Float(openCvParam["th_lightness"]!)
+        lblLightThreshold.text = String(format:"%3d", openCvParam["th_lightness"]!)
         slAreaThreshold.lowerValue = Double(Float(openCvParam["th_area_min"]!))
         slAreaThreshold.upperValue = Double(Float(openCvParam["th_area_max"]!))
         lblAreaThreshold.text = String(format:"%3d-%3d", openCvParam["th_area_min"]!, openCvParam["th_area_max"]!)
@@ -74,8 +74,8 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
-        openCvParam["slider_value"] = Int(sender.value)
-        lblLightThreshold.text = String(format:"%3d", openCvParam["slider_value"]!)
+        openCvParam["th_lightness"] = Int(sender.value)
+        lblLightThreshold.text = String(format:"%3d", openCvParam["th_lightness"]!)
         openCv.setParam(openCvParam);
     }
 
