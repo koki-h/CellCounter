@@ -106,12 +106,20 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (void)processImage:(cv::Mat &)image {
     [_lock lock]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
     @try {
+        //明るさによって二値化し、境界線を取得
         int th_lightness = [[_param objectForKey: @"th_lightness"] intValue];
         std::vector<std::vector<cv::Point>> contours =
-            [self getLightnessContours:image th_lightness:th_lightness]; //明るさによって二値化し、境界線を取得
+            [self getLightnessContours:image th_lightness:th_lightness];
+
+        // しきい値の範囲を外れる面積の輪郭線をカウントから除外する
+        double th_area_min = [[_param objectForKey: @"th_area_min"] doubleValue];
+        double th_area_max = [[_param objectForKey: @"th_area_max"] doubleValue];
+        contours =
+            [self contoursWithinArea:contours th_area_min:th_area_min th_area_max:th_area_max];
+
+        // 最終的に残った境界線の個数が細胞の個数となる
         image = [self drawContours:image contours:contours]; //境界線を描画
-        // TODO: しきい値の範囲を外れる面積の輪郭線をカウントから除外するようにする
-        long cellcount = contours.size(); // 最終的に残った境界線の個数が細胞の個数となる
+        long cellcount = contours.size();
         NSDictionary *result = @{@"contours_count":  [NSNumber numberWithLong: cellcount]};
         [self.delegate didProcessImage: result];
     }
@@ -121,6 +129,18 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 }
 
 // Filters
+- (std::vector<std::vector<cv::Point>>) contoursWithinArea: (std::vector<std::vector<cv::Point>>) contours th_area_min:(double) min th_area_max:(double) max {
+    std::vector<std::vector<cv::Point>> contours_filtered = std::vector<std::vector<cv::Point>>();
+    for(int i = 0 ; i < contours.size() ; ++i){
+        std::vector<cv::Point> contour = contours[i];
+        double area = cv::contourArea(contour);
+        if ((min <= area) && (area <= max)) {
+            contours_filtered.push_back(contour);
+        }
+    }
+    return contours_filtered;
+}
+
 - (std::vector<std::vector<cv::Point>>) getLightnessContours: (cv::Mat) src th_lightness: (int) th_lightness {
     cv::Mat dst;
     int l_threshold = th_lightness;
