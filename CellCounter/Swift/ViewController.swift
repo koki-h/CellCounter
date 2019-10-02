@@ -37,8 +37,8 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         openCv.delegate = self
         slLightThreshold.value = Float(openCvParam["th_lightness"]!)
         lblLightThreshold.text = String(format:"%3d", openCvParam["th_lightness"]!)
-        slAreaThreshold.lowerValue = Double(Float(openCvParam["th_area_min"]!))
-        slAreaThreshold.upperValue = Double(Float(openCvParam["th_area_max"]!))
+        slAreaThreshold.lowerValue = Double(openCvParam["th_area_min"]!)
+        slAreaThreshold.upperValue = Double(openCvParam["th_area_max"]!)
         lblAreaThreshold.text = String(format:"%3d-%3d", openCvParam["th_area_min"]!, openCvParam["th_area_max"]!)
         self.lblCellCount.text = "0"
         openCv.setParam(openCvParam)
