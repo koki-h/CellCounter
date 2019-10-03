@@ -27,28 +27,19 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet weak var lblCellCount: UILabel!
 
     let openCv = OpenCVWrapper()
-    var openCvParam: Dictionary = ["th_lightness": 128,
-                                   "th_area_min":1000,
-                                   "th_area_max":4000] {
-        didSet {
-            UserDefaults.standard.set(openCvParam, forKey: "OpenCVParam")
-        }
-    }
+    var app:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
 
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
         openCv.delegate = self
-        if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
-            openCvParam = ud_opencv_param as! [String : Int]
-        }
-        slLightThreshold.value = Float(openCvParam["th_lightness"]!)
-        lblLightThreshold.text = String(format:"%3d", openCvParam["th_lightness"]!)
-        slAreaThreshold.lowerValue = Double(openCvParam["th_area_min"]!)
-        slAreaThreshold.upperValue = Double(openCvParam["th_area_max"]!)
-        lblAreaThreshold.text = String(format:"%3d-%3d", openCvParam["th_area_min"]!, openCvParam["th_area_max"]!)
+        slLightThreshold.value = Float(app.openCvParam["th_lightness"]!)
+        lblLightThreshold.text = String(format:"%3d", app.openCvParam["th_lightness"]!)
+        slAreaThreshold.lowerValue = Double(app.openCvParam["th_area_min"]!)
+        slAreaThreshold.upperValue = Double(app.openCvParam["th_area_max"]!)
+        lblAreaThreshold.text = String(format:"%3d-%3d", app.openCvParam["th_area_min"]!, app.openCvParam["th_area_max"]!)
         self.lblCellCount.text = "0"
-        openCv.setParam(openCvParam)
+        openCv.setParam(app.openCvParam)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -81,16 +72,16 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
-        openCvParam["th_lightness"] = Int(sender.value)
-        lblLightThreshold.text = String(format:"%3d", openCvParam["th_lightness"]!)
-        openCv.setParam(openCvParam);
+        app.openCvParam["th_lightness"] = Int(sender.value)
+        lblLightThreshold.text = String(format:"%3d", app.openCvParam["th_lightness"]!)
+        openCv.setParam(app.openCvParam);
     }
 
     @IBAction func threshold_a_changed(_ sender: RangeSlider) {
-        openCvParam["th_area_min"] = Int(sender.lowerValue)
-        openCvParam["th_area_max"] = Int(sender.upperValue)
-        lblAreaThreshold.text = String(format:"%4d-%4d", openCvParam["th_area_min"]!, openCvParam["th_area_max"]!)
-        openCv.setParam(openCvParam);
+        app.openCvParam["th_area_min"] = Int(sender.lowerValue)
+        app.openCvParam["th_area_max"] = Int(sender.upperValue)
+        lblAreaThreshold.text = String(format:"%4d-%4d", app.openCvParam["th_area_min"]!, app.openCvParam["th_area_max"]!)
+        openCv.setParam(app.openCvParam);
     }
 }
 
