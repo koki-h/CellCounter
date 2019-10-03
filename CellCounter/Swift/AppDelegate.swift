@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
             openCvParam = ud_opencv_param
         }
+        //配列で保存されていた色設定をUIColorに変換する
         let color_dict = openCvParam["contour_color_d"] as! Dictionary<String, Any>
         openCvParam["contour_color"] = UIColor(color_dict)
         return true
@@ -50,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
         let contour_color = openCvParam["contour_color"] as! UIColor
         openCvParam["contour_color"] = nil
         openCvParam["contour_color_d"] = contour_color.encode()
