@@ -8,8 +8,8 @@
 // DONE: 輪郭線のカウントを画面に表示する
 // DONE: 輪郭線面積の上下しきい値を設定できるようにする
 // DONE: しきい値の範囲を外れる面積の輪郭線をカウントから除外するようにする
-// TODO: パラメータを変更時に自動的に保存するようにする
-// TODO: 起動時に保存したパラメータを読み出すようにする
+// DONE: パラメータを変更時に自動的に保存するようにする
+// DONE: 起動時に保存したパラメータを読み出すようにする
 // TODO: 画面表示をなるべくカッコよく調整する
 // TODO: 背景色、フォント色、境界線色を別画面で設定できるようにする
 
@@ -29,12 +29,19 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
     let openCv = OpenCVWrapper()
     var openCvParam: Dictionary = ["th_lightness": 128,
                                    "th_area_min":1000,
-                                   "th_area_max":4000]
+                                   "th_area_max":4000] {
+        didSet {
+            UserDefaults.standard.set(openCvParam, forKey: "OpenCVParam")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
         openCv.delegate = self
+        if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
+            openCvParam = ud_opencv_param as! [String : Int]
+        }
         slLightThreshold.value = Float(openCvParam["th_lightness"]!)
         lblLightThreshold.text = String(format:"%3d", openCvParam["th_lightness"]!)
         slAreaThreshold.lowerValue = Double(openCvParam["th_area_min"]!)
