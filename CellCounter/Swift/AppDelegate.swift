@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var openCvParam: Dictionary = ["th_lightness": 128.0,
                                    "th_area_min":1000.0,
-                                   "th_area_max":4000.0] as [String:Any]
+                                   "th_area_max":4000.0,
+                                   "contour_color_d":["r":0,"g":0,"b":1.0,"a":1.0]] as [String:Any]
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -23,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
             openCvParam = ud_opencv_param
         }
-
-        openCvParam["contour_color"] = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        let color_dict = openCvParam["contour_color_d"] as! Dictionary<String, Any>
+        openCvParam["contour_color"] = UIColor(color_dict)
         return true
     }
 
@@ -49,7 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        let contour_color = openCvParam["contour_color"] as! UIColor
         openCvParam["contour_color"] = nil
+        openCvParam["contour_color_d"] = contour_color.encode()
         UserDefaults.standard.set(openCvParam, forKey: "OpenCVParam") //パラメータを保存する
     }
 }
