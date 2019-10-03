@@ -12,16 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var openCvParam: Dictionary = ["th_lightness": 128,
-                                   "th_area_min":1000,
-                                   "th_area_max":4000]
+    var openCvParam: Dictionary = ["th_lightness": 128.0,
+                                   "th_area_min":1000.0,
+                                   "th_area_max":4000.0] as [String:Any]
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // 保存されたパラメータがあれば読み出す
         if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
-            openCvParam = ud_opencv_param as! [String : Int]
+            openCvParam = ud_opencv_param
         }
+
+        openCvParam["contour_color"] = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         return true
     }
 
@@ -46,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        openCvParam["contour_color"] = nil
         UserDefaults.standard.set(openCvParam, forKey: "OpenCVParam") //パラメータを保存する
     }
 }

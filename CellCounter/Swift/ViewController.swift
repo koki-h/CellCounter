@@ -33,11 +33,11 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
         openCv.delegate = self
-        slLightThreshold.value = Float(app.openCvParam["th_lightness"]!)
-        lblLightThreshold.text = String(format:"%3d", app.openCvParam["th_lightness"]!)
-        slAreaThreshold.lowerValue = Double(app.openCvParam["th_area_min"]!)
-        slAreaThreshold.upperValue = Double(app.openCvParam["th_area_max"]!)
-        lblAreaThreshold.text = String(format:"%3d-%3d", app.openCvParam["th_area_min"]!, app.openCvParam["th_area_max"]!)
+        slLightThreshold.value = Float(app.openCvParam["th_lightness"] as! Double)
+        lblLightThreshold.text = String(format:"%3d", Int(slLightThreshold.value))
+        slAreaThreshold.lowerValue = app.openCvParam["th_area_min"] as! Double
+        slAreaThreshold.upperValue = app.openCvParam["th_area_max"] as! Double
+        lblAreaThreshold.text = String(format:"%3d-%3d", Int(slAreaThreshold.lowerValue), Int(slAreaThreshold.upperValue))
         self.lblCellCount.text = "0"
         openCv.setParam(app.openCvParam)
     }
@@ -73,14 +73,14 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
         app.openCvParam["th_lightness"] = Int(sender.value)
-        lblLightThreshold.text = String(format:"%3d", app.openCvParam["th_lightness"]!)
+        lblLightThreshold.text = String(format:"%3d", Int(sender.value))
         openCv.setParam(app.openCvParam);
     }
 
     @IBAction func threshold_a_changed(_ sender: RangeSlider) {
-        app.openCvParam["th_area_min"] = Int(sender.lowerValue)
-        app.openCvParam["th_area_max"] = Int(sender.upperValue)
-        lblAreaThreshold.text = String(format:"%4d-%4d", app.openCvParam["th_area_min"]!, app.openCvParam["th_area_max"]!)
+        app.openCvParam["th_area_min"] = sender.lowerValue
+        app.openCvParam["th_area_max"] = sender.upperValue
+        lblAreaThreshold.text = String(format:"%4d-%4d", Int(sender.lowerValue), Int(sender.upperValue))
         openCv.setParam(app.openCvParam);
     }
 }

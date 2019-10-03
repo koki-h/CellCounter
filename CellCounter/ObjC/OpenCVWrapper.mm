@@ -118,7 +118,9 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
             [self contoursWithinArea:contours th_area_min:th_area_min th_area_max:th_area_max];
 
         // 最終的に残った境界線の個数が細胞の個数となる
-        image = [self drawContours:image contours:contours]; //境界線を描画
+        UIColor *contour_color = [_param objectForKey:@"contour_color"];
+        cv::Scalar cv_contour_color = [self uiColorToCvScalarBGR:contour_color];
+        image = [self drawContours:image contours:contours color:cv_contour_color]; //境界線を描画
         long cellcount = contours.size();
         NSDictionary *result = @{@"contours_count":  [NSNumber numberWithLong: cellcount]};
         [self.delegate didProcessImage: result];
@@ -126,6 +128,18 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     @finally {
         [_lock unlock];
     }
+}
+
+- (cv::Scalar) uiColorToCvScalarBGR: (UIColor*) color {
+    double red;
+    double green;
+    double blue;
+    double alpha;
+    [color getRed: &red green: &green blue: &blue alpha: &alpha];
+    int i_red = red * 255.0;
+    int i_green = green * 255.0;
+    int i_blue = blue * 255.0;
+    return cv::Scalar(i_blue, i_green, i_red, alpha);
 }
 
 // Filters
@@ -150,10 +164,10 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     return contours;
 }
 
-- (cv::Mat) drawContours:(cv::Mat)canvas contours:(std::vector<std::vector<cv::Point>>) contours
+- (cv::Mat) drawContours:(cv::Mat) canvas contours:(std::vector<std::vector<cv::Point>>) contours color:(cv::Scalar) color
 {
     if (contours.size() > 1) {
-        cv::drawContours(canvas, contours, -1, cv::Scalar(0,0,0),1);
+        cv::drawContours(canvas, contours, -1, color,1);
     }
     return canvas;
 }
