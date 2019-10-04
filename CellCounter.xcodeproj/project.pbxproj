@@ -43,6 +43,7 @@
 		E7A2F0962345E81800833D14 /* AMColorPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A2F0862345E81800833D14 /* AMColorPickerTableViewCell.swift */; };
 		E7A2F0972345E81800833D14 /* AMColorPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A2F0872345E81800833D14 /* AMColorPickerTableViewCell.xib */; };
 		E7A2F0982345E81800833D14 /* AMColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A2F0892345E81800833D14 /* AMColorPickerSlider.swift */; };
+		E7A2F09E2346D5C800833D14 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A2F09D2346D5C800833D14 /* ConfigViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		E7A2F0862345E81800833D14 /* AMColorPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMColorPickerTableViewCell.swift; sourceTree = "<group>"; };
 		E7A2F0872345E81800833D14 /* AMColorPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMColorPickerTableViewCell.xib; sourceTree = "<group>"; };
 		E7A2F0892345E81800833D14 /* AMColorPickerSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMColorPickerSlider.swift; sourceTree = "<group>"; };
+		E7A2F09D2346D5C800833D14 /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				E763EBD5233DA8B4008625FF /* AppDelegate.swift */,
 				E763EBD7233DA8B4008625FF /* SceneDelegate.swift */,
 				E763EBD9233DA8B4008625FF /* ViewController.swift */,
+				E7A2F09D2346D5C800833D14 /* ConfigViewController.swift */,
 				E785CE132345D15B002417CB /* Util.swift */,
 			);
 			path = Swift;
@@ -324,6 +327,7 @@
 				E763EBDA233DA8B4008625FF /* ViewController.swift in Sources */,
 				E7A2F08A2345E81800833D14 /* AMColorPickerProtocol.swift in Sources */,
 				E763EBD6233DA8B4008625FF /* AppDelegate.swift in Sources */,
+				E7A2F09E2346D5C800833D14 /* ConfigViewController.swift in Sources */,
 				E785CE142345D15C002417CB /* Util.swift in Sources */,
 				E79BAE9623431DC0005CEA57 /* RangeSlider.swift in Sources */,
 				E763EBD8233DA8B4008625FF /* SceneDelegate.swift in Sources */,

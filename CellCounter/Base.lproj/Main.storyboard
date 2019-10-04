@@ -35,13 +35,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA1-iM-n2y">
-                                        <rect key="frame" x="10" y="560" width="56" height="21"/>
+                                        <rect key="frame" x="10" y="585" width="56" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-am-Fag" customClass="RangeSlider" customModule="CellCounter" customModuleProvider="target">
-                                        <rect key="frame" x="157.5" y="554" width="246.5" height="33"/>
+                                        <rect key="frame" x="157.5" y="579" width="247.5" height="33"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
                                                 <real key="value" value="0.0"/>
@@ -61,7 +61,7 @@
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th_Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNg-R4-Ml2">
-                                        <rect key="frame" x="76" y="562" width="71.5" height="17"/>
+                                        <rect key="frame" x="76" y="587" width="71.5" height="17"/>
                                         <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -72,24 +72,34 @@
                                             <action selector="threshold_l_changed:" destination="BYZ-38-t0r" eventType="valueChanged" id="JPx-6i-rDG"/>
                                         </connections>
                                     </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynq-F3-WIq">
+                                        <rect key="frame" x="10" y="530" width="54" height="30"/>
+                                        <state key="normal" title="Config.."/>
+                                        <connections>
+                                            <segue destination="vjc-uc-RMR" kind="show" id="3SR-sI-wVf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ynq-F3-WIq" secondAttribute="trailing" constant="20" symbolic="YES" id="7x4-Dt-DqU"/>
                                     <constraint firstItem="SNg-R4-Ml2" firstAttribute="centerY" secondItem="EA1-iM-n2y" secondAttribute="centerY" id="80e-9T-RR6"/>
                                     <constraint firstItem="zlw-tb-f5T" firstAttribute="leading" secondItem="xtN-JZ-9a8" secondAttribute="trailing" constant="10" id="Ae3-cy-ZX3"/>
-                                    <constraint firstItem="yAQ-Yy-hWN" firstAttribute="top" secondItem="EA1-iM-n2y" secondAttribute="bottom" constant="50" id="D1w-UU-FgD"/>
+                                    <constraint firstItem="yAQ-Yy-hWN" firstAttribute="top" secondItem="EA1-iM-n2y" secondAttribute="bottom" constant="25" id="D1w-UU-FgD"/>
                                     <constraint firstItem="yAQ-Yy-hWN" firstAttribute="leading" secondItem="Ak7-gX-HnT" secondAttribute="leading" constant="10" id="EgO-ge-XKw"/>
                                     <constraint firstItem="KC4-am-Fag" firstAttribute="centerY" secondItem="EA1-iM-n2y" secondAttribute="centerY" id="EoH-kq-C2J"/>
                                     <constraint firstItem="SNg-R4-Ml2" firstAttribute="leading" secondItem="EA1-iM-n2y" secondAttribute="trailing" constant="10" id="IqB-Oc-BTD"/>
                                     <constraint firstAttribute="bottom" secondItem="yAQ-Yy-hWN" secondAttribute="bottom" constant="10" id="Jf7-N5-fiT"/>
-                                    <constraint firstAttribute="trailing" secondItem="KC4-am-Fag" secondAttribute="trailing" constant="10" id="aFr-UR-ven"/>
+                                    <constraint firstAttribute="trailing" secondItem="KC4-am-Fag" secondAttribute="trailing" constant="9" id="aFr-UR-ven"/>
+                                    <constraint firstItem="EA1-iM-n2y" firstAttribute="top" secondItem="Ynq-F3-WIq" secondAttribute="bottom" constant="25" id="c0Q-ta-cuO"/>
                                     <constraint firstItem="zlw-tb-f5T" firstAttribute="centerY" secondItem="yAQ-Yy-hWN" secondAttribute="centerY" id="eMM-ur-BKa"/>
                                     <constraint firstAttribute="trailing" secondItem="zlw-tb-f5T" secondAttribute="trailing" constant="10" id="gUO-9X-Rza"/>
                                     <constraint firstItem="xtN-JZ-9a8" firstAttribute="centerY" secondItem="yAQ-Yy-hWN" secondAttribute="centerY" id="h6J-Za-L7D"/>
                                     <constraint firstItem="EA1-iM-n2y" firstAttribute="leading" secondItem="Ak7-gX-HnT" secondAttribute="leading" constant="10" id="knJ-2n-PEp"/>
                                     <constraint firstItem="xtN-JZ-9a8" firstAttribute="leading" secondItem="yAQ-Yy-hWN" secondAttribute="trailing" constant="10" id="mgD-iS-Tgi"/>
-                                    <constraint firstItem="zlw-tb-f5T" firstAttribute="top" secondItem="KC4-am-Fag" secondAttribute="bottom" constant="39.5" id="rj6-3c-4vl"/>
+                                    <constraint firstItem="zlw-tb-f5T" firstAttribute="top" secondItem="KC4-am-Fag" secondAttribute="bottom" constant="14.5" id="rj6-3c-4vl"/>
                                     <constraint firstItem="KC4-am-Fag" firstAttribute="leading" secondItem="SNg-R4-Ml2" secondAttribute="trailing" constant="10" id="tds-Nf-3uH"/>
+                                    <constraint firstItem="Ynq-F3-WIq" firstAttribute="leading" secondItem="Ak7-gX-HnT" secondAttribute="leading" constant="10" id="ua9-v9-95Y"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVr-Gb-hd6">
@@ -142,6 +152,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </scene>
+        <!--Config View Controller-->
+        <scene sceneID="6Ue-8n-hcc">
+            <objects>
+                <viewController id="vjc-uc-RMR" customClass="ConfigViewController" customModule="CellCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z5Y-PK-xY1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deO-se-Nld">
+                                <rect key="frame" x="16" y="18" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="btnDoneDown:" destination="vjc-uc-RMR" eventType="touchDown" id="5aO-Gc-7jv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="deO-se-Nld" secondAttribute="trailing" symbolic="YES" id="6Mc-1Y-J8z"/>
+                            <constraint firstItem="deO-se-Nld" firstAttribute="top" secondItem="lGW-AX-yKE" secondAttribute="top" constant="18" id="IAT-TJ-UOP"/>
+                            <constraint firstItem="deO-se-Nld" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="16" id="ts6-LC-cro"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lGW-AX-yKE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BTA-40-FnM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0UA-yp-BAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="109"/>
         </scene>
     </scenes>
 </document>

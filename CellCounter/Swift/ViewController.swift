@@ -28,7 +28,7 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
 
     let openCv = OpenCVWrapper()
     var app:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
-
+    var openCVStarted = false
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
@@ -44,16 +44,23 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if openCVStarted { //OpenCVの開始は1度だけで良い
+            return
+        }
         openCv.start()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
         }
         rootView.sendSubviewToBack(imgView)
+        openCVStarted = true
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // タッチした領域のUI要素を表示/非表示切り替えする
         guard let touched = touches.first?.view else {
+            return
+        }
+        if touched != controleView && touched != dispCounterView {
             return
         }
         for subview in touched.subviews {
