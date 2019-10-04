@@ -16,15 +16,15 @@
 import UIKit
 
 class ViewController: UIViewController, OpenCVWrapperDelegate {
-    @IBOutlet var rootView: UIView!
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var controleView: UIView!
-    @IBOutlet weak var dispCounterView: UIView!
-    @IBOutlet weak var slLightThreshold: UISlider!
-    @IBOutlet weak var lblLightThreshold: UILabel!
-    @IBOutlet weak var slAreaThreshold: RangeSlider!
-    @IBOutlet weak var lblAreaThreshold: UILabel!
-    @IBOutlet weak var lblCellCount: UILabel!
+    @IBOutlet var rootView: UIView!                  // 大本のビュー
+    @IBOutlet weak var imgView: UIImageView!         // カメラ画像ビュー
+    @IBOutlet weak var controleView: UIView!         // 設定スライダー等が載ったビュー
+    @IBOutlet weak var slLightThreshold: UISlider!   // 明るさのしきい値を設定するスライダー
+    @IBOutlet weak var lblLightThreshold: UILabel!   // 明るさのしきい値を表示するラベル
+    @IBOutlet weak var slAreaThreshold: RangeSlider! // 面積のしきい値を設定するスライダー
+    @IBOutlet weak var lblAreaThreshold: UILabel!    // 面積のしきい値を表示するラベル
+    @IBOutlet weak var dispCounterView: UIView!      // カウントを表示するラベルが載ったビュー
+    @IBOutlet weak var lblCellCount: UILabel!        // カウントを表示するラベル
 
     let openCv = OpenCVWrapper()
     var app:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
@@ -51,7 +51,7 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
         }
-        rootView.sendSubviewToBack(imgView)
+        rootView.sendSubviewToBack(imgView) //カメラ画像ビューをバックに回す
         openCVStarted = true
     }
 
@@ -60,6 +60,7 @@ class ViewController: UIViewController, OpenCVWrapperDelegate {
         guard let touched = touches.first?.view else {
             return
         }
+        //表示表示切り替えするのは controleView と dispCounterViewのみ
         if touched != controleView && touched != dispCounterView {
             return
         }
