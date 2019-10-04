@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E763EBD6233DA8B4008625FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E763EBD5233DA8B4008625FF /* AppDelegate.swift */; };
 		E763EBD8233DA8B4008625FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E763EBD7233DA8B4008625FF /* SceneDelegate.swift */; };
-		E763EBDA233DA8B4008625FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E763EBD9233DA8B4008625FF /* ViewController.swift */; };
+		E763EBDA233DA8B4008625FF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E763EBD9233DA8B4008625FF /* CameraViewController.swift */; };
 		E763EBDD233DA8B4008625FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E763EBDB233DA8B4008625FF /* Main.storyboard */; };
 		E763EBE0233DA8B4008625FF /* CellCounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E763EBDE233DA8B4008625FF /* CellCounter.xcdatamodeld */; };
 		E763EBE2233DA8B5008625FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E763EBE1233DA8B5008625FF /* Assets.xcassets */; };
@@ -50,7 +50,7 @@
 		E763EBD2233DA8B4008625FF /* CellCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CellCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E763EBD5233DA8B4008625FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E763EBD7233DA8B4008625FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E763EBD9233DA8B4008625FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E763EBD9233DA8B4008625FF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		E763EBDC233DA8B4008625FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E763EBDF233DA8B4008625FF /* CellCounter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CellCounter.xcdatamodel; sourceTree = "<group>"; };
 		E763EBE1233DA8B5008625FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 				E79BAE9523431DC0005CEA57 /* RangeSlider.swift */,
 				E763EBD5233DA8B4008625FF /* AppDelegate.swift */,
 				E763EBD7233DA8B4008625FF /* SceneDelegate.swift */,
-				E763EBD9233DA8B4008625FF /* ViewController.swift */,
+				E763EBD9233DA8B4008625FF /* CameraViewController.swift */,
 				E7A2F09D2346D5C800833D14 /* ConfigViewController.swift */,
 				E785CE132345D15B002417CB /* Util.swift */,
 			);
@@ -324,7 +324,7 @@
 				E763EBE0233DA8B4008625FF /* CellCounter.xcdatamodeld in Sources */,
 				E7A2F0962345E81800833D14 /* AMColorPickerTableViewCell.swift in Sources */,
 				E763EBEE233DBD81008625FF /* OpenCVWrapper.mm in Sources */,
-				E763EBDA233DA8B4008625FF /* ViewController.swift in Sources */,
+				E763EBDA233DA8B4008625FF /* CameraViewController.swift in Sources */,
 				E7A2F08A2345E81800833D14 /* AMColorPickerProtocol.swift in Sources */,
 				E763EBD6233DA8B4008625FF /* AppDelegate.swift in Sources */,
 				E7A2F09E2346D5C800833D14 /* ConfigViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CameraViewController.swift
 //  CellCounter
 //
 //  Created by koki on 2019/09/27.
@@ -15,7 +15,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, OpenCVWrapperDelegate {
+class CameraViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet var rootView: UIView!                  // 大本のビュー
     @IBOutlet weak var imgView: UIImageView!         // カメラ画像ビュー
     @IBOutlet weak var controleView: UIView!         // 設定スライダー等が載ったビュー
