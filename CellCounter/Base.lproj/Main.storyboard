@@ -168,20 +168,49 @@
                                     <action selector="btnDoneDown:" destination="vjc-uc-RMR" eventType="touchDown" id="5aO-Gc-7jv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color for edges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgu-Ps-fMN">
+                                <rect key="frame" x="50" y="68" width="118.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Min-K0-HbT">
+                                <rect key="frame" x="178.5" y="63.5" width="68" height="30"/>
+                                <state key="normal" title=" #FFFFFF "/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnContourColorDown:" destination="vjc-uc-RMR" eventType="touchDown" id="Pgc-Ev-Yt6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Min-K0-HbT" firstAttribute="centerY" secondItem="Wgu-Ps-fMN" secondAttribute="centerY" id="3MT-Oi-Aea"/>
                             <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="deO-se-Nld" secondAttribute="trailing" symbolic="YES" id="6Mc-1Y-J8z"/>
                             <constraint firstItem="deO-se-Nld" firstAttribute="top" secondItem="lGW-AX-yKE" secondAttribute="top" constant="18" id="IAT-TJ-UOP"/>
+                            <constraint firstItem="Min-K0-HbT" firstAttribute="leading" secondItem="Wgu-Ps-fMN" secondAttribute="trailing" constant="10" id="Kj0-iq-5ge"/>
+                            <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Min-K0-HbT" secondAttribute="trailing" symbolic="YES" id="YvV-s3-I4E"/>
+                            <constraint firstItem="Wgu-Ps-fMN" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="50" id="mLw-94-vq6"/>
                             <constraint firstItem="deO-se-Nld" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="16" id="ts6-LC-cro"/>
+                            <constraint firstItem="Wgu-Ps-fMN" firstAttribute="top" secondItem="deO-se-Nld" secondAttribute="bottom" constant="20" id="wKO-eH-qFP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lGW-AX-yKE"/>
                     </view>
                     <navigationItem key="navigationItem" id="BTA-40-FnM"/>
+                    <connections>
+                        <outlet property="btnContourColor" destination="Min-K0-HbT" id="NhJ-R6-P8O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UA-yp-BAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="109"/>
+            <point key="canvasLocation" x="986.95652173913049" y="108.48214285714285"/>
         </scene>
     </scenes>
 </document>
