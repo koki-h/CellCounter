@@ -54,8 +54,11 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
     }
 
     func setupButton(_ button:UIButton, color:UIColor) {
-        button.backgroundColor = color
-        button.tintColor = colorMatchedFor(backcolor: color)
+        DispatchQueue.main.async {
+            button.setTitle(" #" + color.hexStrngWithOpacity() + " ", for: .normal)
+            button.backgroundColor = color
+            button.tintColor = self.colorMatchedFor(backcolor: color)
+        }
     }
 
     func colorMatchedFor(backcolor: UIColor) -> UIColor{

@@ -17,6 +17,17 @@ extension UIColor {
         return ["r":r, "g":g, "b":b, "a":a]
     }
 
+    func hexStrngWithOpacity() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        let opacity:Int = Int(a * 100)
+        return String(format: "%06x (%d)", rgb, opacity) as String
+    }
+
     convenience init?(_ dict:Dictionary<String,Any>?) {
         guard (dict != nil) else {
             return nil
