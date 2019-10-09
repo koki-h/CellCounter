@@ -45,11 +45,15 @@ public class AMColorPickerViewController: UIViewController, AMColorPicker {
         cpSliderView.delegate = self
         cpWheelView.delegate = self
         
+    }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         cpSliderView.selectedColor = selectedColor
         cpTableView.selectedColor = selectedColor
         cpWheelView.selectedColor = selectedColor
     }
-
+    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
