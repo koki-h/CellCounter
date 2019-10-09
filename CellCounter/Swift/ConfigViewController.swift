@@ -10,10 +10,12 @@ import UIKit
 class ConfigViewController: UIViewController,AMColorPickerDelegate {
     let colorPickerViewController = AMColorPickerViewController()
     var btnTouchedDown:UIButton? // ColorPickerを表示するために押されたボタン
+    let lockBtnTouchedDown = NSObject() //btnTouchedDownの排他制御用オブジェクト
     var app:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
 
     @IBOutlet weak var btnContourColor: UIButton! // 境界線の色設定ボタン
     @IBOutlet weak var btnCountColor: UIButton!   // カウントした数字の色設定ボタン
+    @IBOutlet weak var btnBackColor: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +26,11 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
         super.viewWillAppear(animated)
         setupButton(btnContourColor, color: app.openCvParam["contour_color"] as? UIColor ?? UIColor.white)
         setupButton(btnCountColor, color: app.screenParam["count_color"] as? UIColor ?? UIColor.white)
+        setupButton(btnBackColor, color: app.screenParam["back_color"] as? UIColor ?? UIColor.white)
     }
 
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
+        objc_sync_enter(lockBtnTouchedDown)
         // colorPickerで色選択されたときに呼ばれる関数
         guard btnTouchedDown != nil else {
             return
@@ -37,11 +41,14 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
             app.openCvParam["contour_color"] = color
         case btnCountColor :
             app.screenParam["count_color"] = color
+        case btnBackColor :
+            app.screenParam["back_color"] = color
         case .none:
             break
         case .some(_):
             break
         }
+        objc_sync_exit(lockBtnTouchedDown)
     }
 
     @IBAction func btnDoneDown(_ sender: Any) {
@@ -50,17 +57,12 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func btnContourColorDown(_ sender: UIButton) {
-        // TODO 今後作成する他の色設定と干渉しないように排他制御を行う（colorPickerは一つしか無いので）
+    @IBAction func btnColorDown(_ sender: UIButton) {
+        objc_sync_enter(lockBtnTouchedDown)
         colorPickerViewController.selectedColor = sender.backgroundColor ?? UIColor.white
         btnTouchedDown = sender
         present(colorPickerViewController, animated: true, completion: nil)
-    }
-
-    @IBAction func btnCountColorDown(_ sender: UIButton) {
-        colorPickerViewController.selectedColor = sender.backgroundColor ?? UIColor.white
-        btnTouchedDown = sender
-        present(colorPickerViewController, animated: true, completion: nil)
+        objc_sync_exit(lockBtnTouchedDown)
     }
 
     func setupButton(_ button:UIButton, color:UIColor) {

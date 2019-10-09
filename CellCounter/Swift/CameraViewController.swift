@@ -45,6 +45,7 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         lblCellCount.textColor = (app.screenParam["count_color"] as! UIColor) // カウントした数字の色を設定
+        rootView.backgroundColor = (app.screenParam["back_color"] as! UIColor) // 背景色を設定
     }
 
     override func viewDidAppear(_ animated: Bool) {
