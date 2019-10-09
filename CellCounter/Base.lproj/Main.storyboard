@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,35 +13,35 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="CellCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vVN-zl-KqK">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ak7-gX-HnT">
-                                <rect key="frame" x="0.0" y="200" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="200" width="320" height="368"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th_Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtN-JZ-9a8" userLabel="lbl Light Threshold">
-                                        <rect key="frame" x="79" y="633" width="82" height="17"/>
+                                        <rect key="frame" x="79" y="339" width="82" height="17"/>
                                         <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAQ-Yy-hWN">
-                                        <rect key="frame" x="10" y="631" width="59" height="21"/>
+                                        <rect key="frame" x="10" y="337" width="59" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA1-iM-n2y">
-                                        <rect key="frame" x="10" y="585" width="56" height="21"/>
+                                        <rect key="frame" x="10" y="291" width="56" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-am-Fag" customClass="RangeSlider" customModule="CellCounter" customModuleProvider="target">
-                                        <rect key="frame" x="157.5" y="579" width="247.5" height="33"/>
+                                        <rect key="frame" x="157.5" y="285" width="153.5" height="33"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
                                                 <real key="value" value="0.0"/>
@@ -61,19 +61,19 @@
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th_Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNg-R4-Ml2">
-                                        <rect key="frame" x="76" y="587" width="71.5" height="17"/>
+                                        <rect key="frame" x="76" y="293" width="71.5" height="17"/>
                                         <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="128" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="zlw-tb-f5T">
-                                        <rect key="frame" x="169" y="626.5" width="237" height="31"/>
+                                        <rect key="frame" x="169" y="332.5" width="143" height="31"/>
                                         <connections>
                                             <action selector="threshold_l_changed:" destination="BYZ-38-t0r" eventType="valueChanged" id="JPx-6i-rDG"/>
                                         </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynq-F3-WIq">
-                                        <rect key="frame" x="10" y="530" width="54" height="30"/>
+                                        <rect key="frame" x="10" y="236" width="54" height="30"/>
                                         <state key="normal" title="Config.."/>
                                         <connections>
                                             <segue destination="vjc-uc-RMR" kind="show" id="3SR-sI-wVf"/>
@@ -103,10 +103,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVr-Gb-hd6">
-                                <rect key="frame" x="0.0" y="44" width="414" height="156"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CellCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvr-ci-Y0K">
-                                        <rect key="frame" x="168" y="5" width="241" height="69"/>
+                                        <rect key="frame" x="74" y="5" width="241" height="69"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="57"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -158,7 +158,7 @@
             <objects>
                 <viewController id="vjc-uc-RMR" customClass="ConfigViewController" customModule="CellCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z5Y-PK-xY1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deO-se-Nld">
@@ -169,14 +169,24 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color for edges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgu-Ps-fMN">
-                                <rect key="frame" x="50" y="68" width="118.5" height="21"/>
+                                <rect key="frame" x="10" y="68" width="118" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color for count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Set-Jv-JV7">
+                                <rect key="frame" x="10" y="99" width="115" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Min-K0-HbT">
-                                <rect key="frame" x="178.5" y="63.5" width="68" height="30"/>
-                                <state key="normal" title=" #FFFFFF "/>
+                                <rect key="frame" x="149" y="64" width="154" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="154" id="RyL-Bm-886"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <state key="normal" title=" #FFFFFF (999%)"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="4"/>
@@ -189,23 +199,49 @@
                                     <action selector="btnContourColorDown:" destination="vjc-uc-RMR" eventType="touchDown" id="Pgc-Ev-Yt6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKl-BZ-UJX">
+                                <rect key="frame" x="149" y="95" width="154" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="154" id="vhX-kU-pcc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <state key="normal" title=" #FFFFFF (999%)"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnCountColorDown:" destination="vjc-uc-RMR" eventType="touchDown" id="lRR-eL-EVb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Min-K0-HbT" firstAttribute="centerY" secondItem="Wgu-Ps-fMN" secondAttribute="centerY" id="3MT-Oi-Aea"/>
+                            <constraint firstItem="IKl-BZ-UJX" firstAttribute="leading" secondItem="Min-K0-HbT" secondAttribute="leading" id="0hM-Tm-adF"/>
+                            <constraint firstItem="IKl-BZ-UJX" firstAttribute="centerY" secondItem="Set-Jv-JV7" secondAttribute="centerY" id="5oT-e6-hkO"/>
                             <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="deO-se-Nld" secondAttribute="trailing" symbolic="YES" id="6Mc-1Y-J8z"/>
+                            <constraint firstItem="lGW-AX-yKE" firstAttribute="bottom" secondItem="IKl-BZ-UJX" secondAttribute="bottom" constant="424" id="6Uo-di-4hb"/>
+                            <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Min-K0-HbT" secondAttribute="trailing" symbolic="YES" id="6gi-rH-w9t"/>
+                            <constraint firstItem="Set-Jv-JV7" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="10" id="9tH-VV-hVX"/>
                             <constraint firstItem="deO-se-Nld" firstAttribute="top" secondItem="lGW-AX-yKE" secondAttribute="top" constant="18" id="IAT-TJ-UOP"/>
-                            <constraint firstItem="Min-K0-HbT" firstAttribute="leading" secondItem="Wgu-Ps-fMN" secondAttribute="trailing" constant="10" id="Kj0-iq-5ge"/>
-                            <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Min-K0-HbT" secondAttribute="trailing" symbolic="YES" id="YvV-s3-I4E"/>
-                            <constraint firstItem="Wgu-Ps-fMN" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="50" id="mLw-94-vq6"/>
+                            <constraint firstItem="Set-Jv-JV7" firstAttribute="top" secondItem="Wgu-Ps-fMN" secondAttribute="bottom" constant="10" id="Ncs-oI-mB7"/>
+                            <constraint firstItem="IKl-BZ-UJX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Set-Jv-JV7" secondAttribute="trailing" constant="8" symbolic="YES" id="ZhW-VI-kRV"/>
+                            <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" secondItem="IKl-BZ-UJX" secondAttribute="trailing" constant="17" id="ejl-Z8-fQM"/>
+                            <constraint firstItem="Wgu-Ps-fMN" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="10" id="pLA-ni-Nzb"/>
+                            <constraint firstItem="Min-K0-HbT" firstAttribute="centerY" secondItem="Wgu-Ps-fMN" secondAttribute="centerY" id="sLR-Sx-M4F"/>
                             <constraint firstItem="deO-se-Nld" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="16" id="ts6-LC-cro"/>
-                            <constraint firstItem="Wgu-Ps-fMN" firstAttribute="top" secondItem="deO-se-Nld" secondAttribute="bottom" constant="20" id="wKO-eH-qFP"/>
+                            <constraint firstItem="Min-K0-HbT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wgu-Ps-fMN" secondAttribute="trailing" constant="5" id="xZm-Kg-ihQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lGW-AX-yKE"/>
                     </view>
                     <navigationItem key="navigationItem" id="BTA-40-FnM"/>
                     <connections>
                         <outlet property="btnContourColor" destination="Min-K0-HbT" id="NhJ-R6-P8O"/>
+                        <outlet property="btnCountColor" destination="IKl-BZ-UJX" id="yE5-bM-uhp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UA-yp-BAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

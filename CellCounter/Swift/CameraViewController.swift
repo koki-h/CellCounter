@@ -42,6 +42,11 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         openCv.setParam(app.openCvParam)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        lblCellCount.textColor = (app.screenParam["count_color"] as! UIColor) // カウントした数字の色を設定
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if openCVStarted { //OpenCVの開始は1度だけで良い

@@ -13,6 +13,7 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
     var app:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
 
     @IBOutlet weak var btnContourColor: UIButton! // 境界線の色設定ボタン
+    @IBOutlet weak var btnCountColor: UIButton!   // カウントした数字の色設定ボタン
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupButton(btnContourColor, color: app.openCvParam["contour_color"] as? UIColor ?? UIColor.white)
+        setupButton(btnCountColor, color: app.screenParam["count_color"] as? UIColor ?? UIColor.white)
     }
 
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
@@ -33,6 +35,8 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
         switch btnTouchedDown {
         case btnContourColor :
             app.openCvParam["contour_color"] = color
+        case btnCountColor :
+            app.screenParam["count_color"] = color
         case .none:
             break
         case .some(_):
@@ -48,6 +52,12 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
 
     @IBAction func btnContourColorDown(_ sender: UIButton) {
         // TODO 今後作成する他の色設定と干渉しないように排他制御を行う（colorPickerは一つしか無いので）
+        colorPickerViewController.selectedColor = sender.backgroundColor ?? UIColor.white
+        btnTouchedDown = sender
+        present(colorPickerViewController, animated: true, completion: nil)
+    }
+
+    @IBAction func btnCountColorDown(_ sender: UIButton) {
         colorPickerViewController.selectedColor = sender.backgroundColor ?? UIColor.white
         btnTouchedDown = sender
         present(colorPickerViewController, animated: true, completion: nil)
