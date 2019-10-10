@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var openCvParam: Dictionary = ["th_lightness": 128.0,
                                    "th_area_min":1000.0,
                                    "th_area_max":4000.0,
-                                   "contour_color_d":["r":0,"g":0,"b":1.0,"a":1.0]] as [String:Any]
+                                   "contour_color":UIColor(["r":0.0,"g":0.0,"b":1.0,"a":1.0]) as Any] as [String:Any]
 
     // 画面表示関連パラメータ
-    var screenParam: Dictionary = ["count_color_d": ["r":1,"g":1,"b":1,"a":1.0],
-                                   "back_color_d": ["r":0,"g":0,"b":0,"a":1.0]] as [String:Any]
+    var screenParam: Dictionary = ["count_color": UIColor(["r":1.0,"g":1.0,"b":1.0,"a":1.0]) as Any,
+                                   "back_color": UIColor(["r":0.0,"g":0.0,"b":0.0,"a":1.0]) as Any] as [String:Any]
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -57,46 +57,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadCvParams() {
         // OpenCV関連の設定をUserDefaultsから読み出す
         // 保存されたパラメータがあれば読み出す
-        if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
-            openCvParam = ud_opencv_param
+        if let value = UserDefaults.standard.object(forKey: "cv_th_lightness") {
+            openCvParam["th_lightness"] = value
+        }
+        if let value = UserDefaults.standard.object(forKey: "cv_th_area_min") {
+            openCvParam["th_area_min"] = value
+        }
+        if let value = UserDefaults.standard.object(forKey: "cv_th_area_max") {
+            openCvParam["th_area_max"] = value
         }
         //配列で保存されていた色設定をUIColorに変換する
         // 境界線の色
-        let contour_color_dict = openCvParam["contour_color_d"] as! Dictionary<String, Any>
-        openCvParam["contour_color"] = UIColor(contour_color_dict)
+        if let value = UserDefaults.standard.dictionary(forKey: "cv_contour_color") {
+            openCvParam["contour_color"] = UIColor(value)
+        }
     }
 
     func loadScreenParams() {
         // 画面表示関連の設定をUserDefaultsから読み出す
-        if let ud_screen_param = UserDefaults.standard.dictionary(forKey: "ScreenParam") {
-            screenParam = ud_screen_param
+        // カウントした数字の色
+        if let value = UserDefaults.standard.dictionary(forKey: "sc_count_color") {
+            screenParam["count_color"] = UIColor(value)
         }
-        // カウントした数字の色
-        let count_color_dict = screenParam["count_color_d"] as! Dictionary<String, Any>
-        screenParam["count_color"] = UIColor(count_color_dict)
-        // カウントした数字の色
-        let back_color_dict = screenParam["back_color_d"] as! Dictionary<String, Any>
-        screenParam["back_color"] = UIColor(back_color_dict)
+        // 背景の色
+        if let value = UserDefaults.standard.dictionary(forKey: "sc_back_color") {
+            screenParam["back_color"] = UIColor(value)
+        }
+    }
+
+    func saveColorParam(key:String,value:UIColor) {
+        // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
+        UserDefaults.standard.set(value.encode(), forKey: key) //パラメータを保存する
     }
 
     func saveCvParams() {
         // OpenCV関連の設定をUserDefaultsに保存する
+        UserDefaults.standard.set(openCvParam["th_lightness"], forKey: "cv_th_lightness")
+        UserDefaults.standard.set(openCvParam["th_area_min"], forKey: "cv_th_area_min")
+        UserDefaults.standard.set(openCvParam["th_area_max"], forKey: "cv_th_area_max")
         // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
-        let contour_color = openCvParam["contour_color"] as! UIColor
-        openCvParam["contour_color"] = nil
-        openCvParam["contour_color_d"] = contour_color.encode()
-        UserDefaults.standard.set(openCvParam, forKey: "OpenCVParam") //パラメータを保存する
+        saveColorParam(key: "cv_contour_color", value: openCvParam["contour_color"] as! UIColor)
     }
 
     func saveScreenParams(){
         // 画面表示関連の設定をUserDefaultsに保存する
-        let count_color = screenParam["count_color"] as! UIColor
-        screenParam["count_color"] = nil
-        screenParam["count_color_d"] = count_color.encode()
-        let back_color = screenParam["back_color"] as! UIColor
-        screenParam["back_color"] = nil
-        screenParam["back_color_d"] = back_color.encode()
-        UserDefaults.standard.set(screenParam, forKey: "ScreenParam") //パラメータを保存する
+        saveColorParam(key: "sc_count_color", value: screenParam["count_color"] as! UIColor)
+        saveColorParam(key: "sc_back_color", value: screenParam["back_color"] as! UIColor)
     }
 }
 
