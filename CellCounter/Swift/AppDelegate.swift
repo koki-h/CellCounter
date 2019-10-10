@@ -85,9 +85,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func saveColorParam(key:String,value:UIColor) {
+    func saveColorParam(value:UIColor,forKey:String) {
         // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
-        UserDefaults.standard.set(value.encode(), forKey: key) //パラメータを保存する
+        UserDefaults.standard.set(value.encode(), forKey: forKey) //パラメータを保存する
     }
 
     func saveCvParams() {
@@ -96,13 +96,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(openCvParam["th_area_min"], forKey: "cv_th_area_min")
         UserDefaults.standard.set(openCvParam["th_area_max"], forKey: "cv_th_area_max")
         // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
-        saveColorParam(key: "cv_contour_color", value: openCvParam["contour_color"] as! UIColor)
+        saveColorParam(value: openCvParam["contour_color"] as! UIColor, forKey: "cv_contour_color")
     }
 
     func saveScreenParams(){
         // 画面表示関連の設定をUserDefaultsに保存する
-        saveColorParam(key: "sc_count_color", value: screenParam["count_color"] as! UIColor)
-        saveColorParam(key: "sc_back_color", value: screenParam["back_color"] as! UIColor)
+        saveColorParam(value: screenParam["count_color"] as! UIColor, forKey: "sc_count_color")
+        saveColorParam(value: screenParam["back_color"] as! UIColor, forKey: "sc_back_color")
     }
 }
 
