@@ -24,23 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // 保存されたパラメータがあれば読み出す
-        if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
-            openCvParam = ud_opencv_param
-        }
-        if let ud_screen_param = UserDefaults.standard.dictionary(forKey: "ScreenParam") {
-            screenParam = ud_screen_param
-        }
-        //配列で保存されていた色設定をUIColorに変換する
-        // 境界線の色
-        let contour_color_dict = openCvParam["contour_color_d"] as! Dictionary<String, Any>
-        openCvParam["contour_color"] = UIColor(contour_color_dict)
-        // カウントした数字の色
-        let count_color_dict = screenParam["count_color_d"] as! Dictionary<String, Any>
-        screenParam["count_color"] = UIColor(count_color_dict)
-        // カウントした数字の色
-        let back_color_dict = screenParam["back_color_d"] as! Dictionary<String, Any>
-        screenParam["back_color"] = UIColor(back_color_dict)
+        loadCvParams()
+        loadScreenParams()
         return true
     }
 
@@ -65,16 +50,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        saveParams()
+        saveCvParams()
+        saveScreenParams()
     }
 
-    func saveParams() {
-        // 設定をUserDefaultsに保存する
+    func loadCvParams() {
+        // OpenCV関連の設定をUserDefaultsから読み出す
+        // 保存されたパラメータがあれば読み出す
+        if let ud_opencv_param = UserDefaults.standard.dictionary(forKey: "OpenCVParam") {
+            openCvParam = ud_opencv_param
+        }
+        //配列で保存されていた色設定をUIColorに変換する
+        // 境界線の色
+        let contour_color_dict = openCvParam["contour_color_d"] as! Dictionary<String, Any>
+        openCvParam["contour_color"] = UIColor(contour_color_dict)
+    }
+
+    func loadScreenParams() {
+        // 画面表示関連の設定をUserDefaultsから読み出す
+        if let ud_screen_param = UserDefaults.standard.dictionary(forKey: "ScreenParam") {
+            screenParam = ud_screen_param
+        }
+        // カウントした数字の色
+        let count_color_dict = screenParam["count_color_d"] as! Dictionary<String, Any>
+        screenParam["count_color"] = UIColor(count_color_dict)
+        // カウントした数字の色
+        let back_color_dict = screenParam["back_color_d"] as! Dictionary<String, Any>
+        screenParam["back_color"] = UIColor(back_color_dict)
+    }
+
+    func saveCvParams() {
+        // OpenCV関連の設定をUserDefaultsに保存する
         // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
         let contour_color = openCvParam["contour_color"] as! UIColor
         openCvParam["contour_color"] = nil
         openCvParam["contour_color_d"] = contour_color.encode()
         UserDefaults.standard.set(openCvParam, forKey: "OpenCVParam") //パラメータを保存する
+    }
+
+    func saveScreenParams(){
+        // 画面表示関連の設定をUserDefaultsに保存する
         let count_color = screenParam["count_color"] as! UIColor
         screenParam["count_color"] = nil
         screenParam["count_color_d"] = count_color.encode()
