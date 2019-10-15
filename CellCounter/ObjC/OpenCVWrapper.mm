@@ -36,7 +36,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 
 - (void) createCameraWithParentView:(UIImageView*) parentView {
     cvCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
-    cvCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+    cvCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
     cvCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
     cvCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     cvCamera.defaultFPS = 30;
