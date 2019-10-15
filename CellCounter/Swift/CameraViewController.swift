@@ -54,11 +54,12 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         if openCVStarted { //OpenCVの開始は1度だけで良い
             return
         }
-        openCv.start()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
-        }
-        rootView.sendSubviewToBack(imgView) //カメラ画像ビューをバックに回す
+//        openCv.start()
+        openCv.processDummyImage() //debug
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
+//        }
+//        rootView.sendSubviewToBack(imgView) //カメラ画像ビューをバックに回す
         openCVStarted = true
     }
 

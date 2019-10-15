@@ -12,6 +12,7 @@
 #import <opencv2/opencv.hpp>
 #import <opencv2/videoio/cap_ios.h>
 #import <opencv2/highgui/highgui_c.h>
+#import <opencv2/imgcodecs/ios.h>
 
 #import "OpenCVWrapper.h"
 @interface
@@ -103,9 +104,18 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     }
 }
 
+- (void)processDummyImage {
+    cv::Mat image = [self loadDummyImage]; 
+    UIImage* img = MatToUIImage(image);
+    UIImageView* ImageView = [[UIImageView alloc] initWithImage:img];
+    [self->cvCamera.parentView addSubview:ImageView];
+}
+
 - (void)processImage:(cv::Mat &)image {
+    // カメラがOFFのときはここは実行されない
     [_lock lock]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
     @try {
+        image = [self loadDummyImage]; //TODO:別のタイミングで呼ぶようにする
         //明るさによって二値化し、境界線を取得
         int th_lightness = [[_param objectForKey: @"th_lightness"] intValue];
         std::vector<std::vector<cv::Point>> contours =
@@ -123,6 +133,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
         image = [self drawContours:image contours:contours color:cv_contour_color]; //境界線を描画
         long cellcount = contours.size();
         NSDictionary *result = @{@"contours_count":  [NSNumber numberWithLong: cellcount]};
+        
         [self.delegate didProcessImage: result];
     }
     @finally {
@@ -191,5 +202,15 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
         }
     }
     return dst;
+}
+
+// テスト用
+//ダミー画像を使って画像処理する
+- (cv::Mat) loadDummyImage {
+    UIImage* image = [UIImage imageNamed:@"dummyCellImage.jpg"];
+    // UIImage -> cv::Mat
+    cv::Mat mat;
+    UIImageToMat(image, mat);
+    return mat;
 }
 @end

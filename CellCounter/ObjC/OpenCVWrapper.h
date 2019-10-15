@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) adjustParentViewAspect;
 - (void) toggleCameraPosition;
 - (void) setParam:(NSDictionary *) param;
+- (void) processDummyImage;
 @end
 
 NS_ASSUME_NONNULL_END

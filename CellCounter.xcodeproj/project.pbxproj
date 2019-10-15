@@ -26,6 +26,7 @@
 		E763EC02233DBECB008625FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E763EC01233DBECB008625FF /* Foundation.framework */; };
 		E763EC04233DBEE9008625FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E763EC03233DBEE9008625FF /* QuartzCore.framework */; };
 		E763EC06233DBEFF008625FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E763EC05233DBEFF008625FF /* UIKit.framework */; };
+		E77CE91C2355A297006D5961 /* dummyCellImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E77CE91B2355A297006D5961 /* dummyCellImage.jpg */; };
 		E785CE142345D15C002417CB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E785CE132345D15B002417CB /* Util.swift */; };
 		E79BAE9623431DC0005CEA57 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79BAE9523431DC0005CEA57 /* RangeSlider.swift */; };
 		E7A2F08A2345E81800833D14 /* AMColorPickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A2F0772345E81800833D14 /* AMColorPickerProtocol.swift */; };
@@ -70,6 +71,7 @@
 		E763EC01233DBECB008625FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E763EC03233DBEE9008625FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E763EC05233DBEFF008625FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E77CE91B2355A297006D5961 /* dummyCellImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dummyCellImage.jpg; sourceTree = "<group>"; };
 		E785CE132345D15B002417CB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E79BAE9523431DC0005CEA57 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		E7A2F0772345E81800833D14 /* AMColorPickerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMColorPickerProtocol.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				E763EBE6233DA8B5008625FF /* Info.plist */,
 				E763EBDE233DA8B4008625FF /* CellCounter.xcdatamodeld */,
 				E763EBEC233DBD81008625FF /* CellCounter-Bridging-Header.h */,
+				E77CE91B2355A297006D5961 /* dummyCellImage.jpg */,
 			);
 			path = CellCounter;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				E7A2F08E2345E81800833D14 /* AMCP_cursor@2x.png in Resources */,
 				E763EBE2233DA8B5008625FF /* Assets.xcassets in Resources */,
 				E7A2F0912345E81800833D14 /* AMColorPickerRGBSliderView.xib in Resources */,
+				E77CE91C2355A297006D5961 /* dummyCellImage.jpg in Resources */,
 				E7A2F0932345E81800833D14 /* AMColorPickerTableView.xib in Resources */,
 				E7A2F08C2345E81800833D14 /* AMColorPickerViewController.xib in Resources */,
 				E7A2F0952345E81800833D14 /* AMColorPickerWheelView.xib in Resources */,
