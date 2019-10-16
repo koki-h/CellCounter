@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                    "contour_color":UIColor(["r":0.0,"g":0.0,"b":1.0,"a":1.0]) as Any] as [String:Any]
 
     // 画面表示関連パラメータ
-    var screenParam: Dictionary = ["count_color": UIColor(["r":1.0,"g":1.0,"b":1.0,"a":1.0]) as Any,
-                                   "back_color": UIColor(["r":0.0,"g":0.0,"b":0.0,"a":1.0]) as Any] as [String:Any]
+    var screenParam: Dictionary = ["count_color": UIColor(["r":1.0,"g":1.0,"b":1.0,"a":1.0]) as Any] as [String:Any]
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -79,10 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let value = UserDefaults.standard.dictionary(forKey: "sc_count_color") {
             screenParam["count_color"] = UIColor(value)
         }
-        // 背景の色
-        if let value = UserDefaults.standard.dictionary(forKey: "sc_back_color") {
-            screenParam["back_color"] = UIColor(value)
-        }
     }
 
     func saveColorParam(value:UIColor,forKey:String) {
@@ -102,7 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func saveScreenParams(){
         // 画面表示関連の設定をUserDefaultsに保存する
         saveColorParam(value: screenParam["count_color"] as! UIColor, forKey: "sc_count_color")
-        saveColorParam(value: screenParam["back_color"] as! UIColor, forKey: "sc_back_color")
     }
 }
 

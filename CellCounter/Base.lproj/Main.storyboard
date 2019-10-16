@@ -231,32 +231,6 @@
                                     <action selector="btnColorDown:" destination="vjc-uc-RMR" eventType="touchDown" id="LbM-qj-XWg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color for back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-ea-sBm">
-                                <rect key="frame" x="10" y="132" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAf-W0-pTM">
-                                <rect key="frame" x="149" y="128" width="154" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="154" id="JVg-JX-Hc3"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="154" id="uvh-yE-TYv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
-                                <state key="normal" title=" #FFFFFF (999%)"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="btnColorDown:" destination="vjc-uc-RMR" eventType="touchDown" id="13B-RD-sfl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -265,28 +239,21 @@
                             <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="deO-se-Nld" secondAttribute="trailing" symbolic="YES" id="6Mc-1Y-J8z"/>
                             <constraint firstItem="lGW-AX-yKE" firstAttribute="bottom" secondItem="IKl-BZ-UJX" secondAttribute="bottom" constant="424" id="6Uo-di-4hb"/>
                             <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Min-K0-HbT" secondAttribute="trailing" symbolic="YES" id="6gi-rH-w9t"/>
-                            <constraint firstItem="JAf-W0-pTM" firstAttribute="top" secondItem="IKl-BZ-UJX" secondAttribute="bottom" constant="4" id="71y-Yt-IFW"/>
                             <constraint firstItem="Set-Jv-JV7" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="10" id="9tH-VV-hVX"/>
-                            <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" secondItem="JAf-W0-pTM" secondAttribute="trailing" constant="17" id="BV2-cy-xrw"/>
-                            <constraint firstItem="JAf-W0-pTM" firstAttribute="leading" secondItem="IKl-BZ-UJX" secondAttribute="leading" id="D2b-BV-SqD"/>
                             <constraint firstItem="deO-se-Nld" firstAttribute="top" secondItem="lGW-AX-yKE" secondAttribute="top" constant="18" id="IAT-TJ-UOP"/>
                             <constraint firstItem="Set-Jv-JV7" firstAttribute="top" secondItem="Wgu-Ps-fMN" secondAttribute="bottom" constant="10" id="Ncs-oI-mB7"/>
                             <constraint firstItem="IKl-BZ-UJX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Set-Jv-JV7" secondAttribute="trailing" constant="8" symbolic="YES" id="ZhW-VI-kRV"/>
-                            <constraint firstItem="ohv-ea-sBm" firstAttribute="leading" secondItem="Set-Jv-JV7" secondAttribute="leading" id="c2q-7f-Ltr"/>
                             <constraint firstItem="lGW-AX-yKE" firstAttribute="trailing" secondItem="IKl-BZ-UJX" secondAttribute="trailing" constant="17" id="ejl-Z8-fQM"/>
-                            <constraint firstItem="JAf-W0-pTM" firstAttribute="centerY" secondItem="ohv-ea-sBm" secondAttribute="centerY" id="gWs-ge-cVp"/>
-                            <constraint firstItem="JAf-W0-pTM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ohv-ea-sBm" secondAttribute="trailing" constant="8" symbolic="YES" id="hkj-SQ-NZa"/>
+                            <constraint firstItem="Wgu-Ps-fMN" firstAttribute="top" secondItem="deO-se-Nld" secondAttribute="bottom" constant="20" id="kBQ-ts-p3C"/>
                             <constraint firstItem="Wgu-Ps-fMN" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="10" id="pLA-ni-Nzb"/>
                             <constraint firstItem="Min-K0-HbT" firstAttribute="centerY" secondItem="Wgu-Ps-fMN" secondAttribute="centerY" id="sLR-Sx-M4F"/>
                             <constraint firstItem="deO-se-Nld" firstAttribute="leading" secondItem="lGW-AX-yKE" secondAttribute="leading" constant="16" id="ts6-LC-cro"/>
-                            <constraint firstItem="JAf-W0-pTM" firstAttribute="centerY" secondItem="ohv-ea-sBm" secondAttribute="centerY" id="xGE-Ev-c5J"/>
                             <constraint firstItem="Min-K0-HbT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wgu-Ps-fMN" secondAttribute="trailing" constant="5" id="xZm-Kg-ihQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lGW-AX-yKE"/>
                     </view>
                     <navigationItem key="navigationItem" id="BTA-40-FnM"/>
                     <connections>
-                        <outlet property="btnBackColor" destination="JAf-W0-pTM" id="aRj-kN-nJz"/>
                         <outlet property="btnContourColor" destination="Min-K0-HbT" id="NhJ-R6-P8O"/>
                         <outlet property="btnCountColor" destination="IKl-BZ-UJX" id="yE5-bM-uhp"/>
                     </connections>

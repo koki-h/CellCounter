@@ -15,7 +15,6 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
 
     @IBOutlet weak var btnContourColor: UIButton! // 境界線の色設定ボタン
     @IBOutlet weak var btnCountColor: UIButton!   // カウントした数字の色設定ボタン
-    @IBOutlet weak var btnBackColor: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +25,6 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
         super.viewWillAppear(animated)
         setupButton(btnContourColor, color: app.openCvParam["contour_color"] as? UIColor ?? UIColor.white)
         setupButton(btnCountColor, color: app.screenParam["count_color"] as? UIColor ?? UIColor.white)
-        setupButton(btnBackColor, color: app.screenParam["back_color"] as? UIColor ?? UIColor.white)
     }
 
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
@@ -41,8 +39,6 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
             app.openCvParam["contour_color"] = color
         case btnCountColor :
             app.screenParam["count_color"] = color
-        case btnBackColor :
-            app.screenParam["back_color"] = color
         case .none:
             break
         case .some(_):
