@@ -12,7 +12,7 @@
 // DONE: 起動時に保存したパラメータを読み出すようにする
 // DONE: 背景色、フォント色、境界線色を別画面で設定できるようにする
 // TODO: 画面表示をなるべくカッコよく調整する
-// TODO: 背景色を変更すると境界線色に影響する問題を修正する
+// TODO: 背景色を変更すると境界線色に影響する問題を修正する->背景色は黒固定に
 
 import UIKit
 
@@ -50,15 +50,19 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if app.DEBUG {
+            imgView.image = openCv.processDummyImage() //debug
+            return
+        }
+
         if openCVStarted { //OpenCVの開始は1度だけで良い
             return
         }
-//        openCv.start()
-        openCv.processDummyImage() //debug
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
-//        }
-//        rootView.sendSubviewToBack(imgView) //カメラ画像ビューをバックに回す
+        openCv.start()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.openCv.adjustParentViewAspect() // カメラ画像を表示するビューのアスペクト比を調整する
+            self.rootView.sendSubviewToBack(self.imgView) //カメラ画像ビューをバックに回す
+        }
         openCVStarted = true
     }
 
@@ -90,6 +94,9 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         app.openCvParam["th_lightness"] = Int(sender.value)
         lblLightThreshold.text = String(format:"%3d", Int(sender.value))
         openCv.setParam(app.openCvParam);
+        if app.DEBUG {
+            imgView.image = openCv.processDummyImage() //debug
+        }
     }
 
     @IBAction func threshold_a_changed(_ sender: RangeSlider) {
@@ -97,6 +104,9 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         app.openCvParam["th_area_max"] = sender.upperValue
         lblAreaThreshold.text = String(format:"%4d-%4d", Int(sender.lowerValue), Int(sender.upperValue))
         openCv.setParam(app.openCvParam);
+        if app.DEBUG {
+            imgView.image = openCv.processDummyImage() //debug
+        }
     }
 }
 

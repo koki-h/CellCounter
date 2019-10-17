@@ -38,7 +38,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (void) createCameraWithParentView:(UIImageView*) parentView {
     cvCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
     cvCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    cvCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    cvCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetHigh;
     cvCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     cvCamera.defaultFPS = 30;
     cvCamera.grayscaleMode = NO;
@@ -104,18 +104,14 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     }
 }
 
-- (void)processDummyImage {
-    cv::Mat image = [self loadDummyImage]; 
-    UIImage* img = MatToUIImage(image);
-    UIImageView* ImageView = [[UIImageView alloc] initWithImage:img];
-    [self->cvCamera.parentView addSubview:ImageView];
+- (void)processImage:(cv::Mat &)image {
+    // カメラから取得した画像が引数に入る
+    [self processImageInner:image];
 }
 
-- (void)processImage:(cv::Mat &)image {
-    // カメラがOFFのときはここは実行されない
+- (void)processImageInner:(cv::Mat &)image {
     [_lock lock]; // スライダーを激しく動かしたときにアプリが落ちるのを防ぐため、排他制御する
     @try {
-        image = [self loadDummyImage]; //TODO:別のタイミングで呼ぶようにする
         //明るさによって二値化し、境界線を取得
         int th_lightness = [[_param objectForKey: @"th_lightness"] intValue];
         std::vector<std::vector<cv::Point>> contours =
@@ -131,6 +127,10 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
         UIColor *contour_color = [_param objectForKey:@"contour_color"];
         cv::Scalar cv_contour_color = [self uiColorToCvScalarBGR:contour_color];
         image = [self drawContours:image contours:contours color:cv_contour_color]; //境界線を描画
+//        for debug↓ 画像全体が画面に表示されているかをチェックするために画像全体を囲む矩形を描画する
+//        cv::Rect r = cv::Rect(0,0,image.cols,image.rows);
+//        cv::rectangle(image, r, cv_contour_color,10);
+//        for debug↑
         long cellcount = contours.size();
         NSDictionary *result = @{@"contours_count":  [NSNumber numberWithLong: cellcount]};
         
@@ -178,7 +178,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (cv::Mat) drawContours:(cv::Mat) canvas contours:(std::vector<std::vector<cv::Point>>) contours color:(cv::Scalar) color
 {
     if (contours.size() > 1) {
-        cv::drawContours(canvas, contours, -1, color,1);
+        cv::drawContours(canvas, contours, -1, color,2);
     }
     return canvas;
 }
@@ -206,11 +206,22 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 
 // テスト用
 //ダミー画像を使って画像処理する
+- (UIImage *)processDummyImage {
+    cv::Mat image = [self loadDummyImage];
+    [self processImageInner:image];
+    cv::cvtColor(image, image, CV_BGR2RGB);
+    UIImage* img = MatToUIImage(image);
+    return img;
+//    UIImageView* ImageView = [[UIImageView alloc] initWithImage:img];
+//    [self->cvCamera.parentView addSubview:ImageView];
+}
+
 - (cv::Mat) loadDummyImage {
     UIImage* image = [UIImage imageNamed:@"dummyCellImage.jpg"];
     // UIImage -> cv::Mat
     cv::Mat mat;
     UIImageToMat(image, mat);
+    cv::cvtColor(mat, mat, CV_RGB2BGR);
     return mat;
 }
 @end

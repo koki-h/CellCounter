@@ -10,13 +10,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let DEBUG = false
 
     var window: UIWindow?
     // OpenCV関連パラメータ
     var openCvParam: Dictionary = ["th_lightness": 128.0,
-                                   "th_area_min":1000.0,
+                                   "th_area_min":0.0,
                                    "th_area_max":4000.0,
-                                   "contour_color":UIColor(["r":0.0,"g":0.0,"b":1.0,"a":1.0]) as Any] as [String:Any]
+                                   "contour_color":UIColor(["r":0.0,"g":1.0,"b":0.0,"a":1.0]) as Any] as [String:Any]
 
     // 画面表示関連パラメータ
     var screenParam: Dictionary = ["count_color": UIColor(["r":1.0,"g":1.0,"b":1.0,"a":1.0]) as Any] as [String:Any]
