@@ -110,5 +110,10 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
             imgView.image = openCv.processDummyImage() //debug
         }
     }
+    
+    //ステータスバーを隠す
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }
 
