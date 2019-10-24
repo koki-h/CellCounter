@@ -216,6 +216,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 
 - (cv::Mat) loadDummyImage {
     UIImage* image = [UIImage imageNamed:@"dummyCellImage.jpg"];
+    image = [image partialImageOfRect:cvCamera.parentView.frame];
     // UIImage -> cv::Mat
     cv::Mat mat;
     UIImageToMat(image, mat);

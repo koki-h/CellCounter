@@ -9,6 +9,9 @@
 #ifndef OpenCVWrapper_h
 #define OpenCVWrapper_h
 #import <Foundation/Foundation.h>
+#import <UIKit/UIImage.h>
+#import <UIKit/UIGraphics.h>
+#import <UIKit/UIScreen.h>
 #import <UIKit/UIImageView.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -28,6 +31,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *) processDummyImage;
 @end
 
+@implementation UIImage (Custom)
+- (UIImage *)partialImageOfRect:(CGRect)rect {
+    // 画像を切り抜く
+    CGPoint originDrawPoint = CGPointMake(rect.origin.x * -1, rect.origin.y * -1);
+
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+    [self drawAtPoint:originDrawPoint];
+    UIImage* partialImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return partialImage;
+}
+@end
 NS_ASSUME_NONNULL_END
 
 
