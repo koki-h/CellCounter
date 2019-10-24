@@ -10,8 +10,12 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    #if arch(i386) || arch(x86_64)
+    let DEBUG = true
+    #else
     let DEBUG = false
-
+    #endif
+    
     var window: UIWindow?
     // OpenCV関連パラメータ
     var openCvParam: Dictionary = ["th_lightness": 128.0,
