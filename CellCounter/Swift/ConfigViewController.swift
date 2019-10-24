@@ -27,6 +27,16 @@ class ConfigViewController: UIViewController,AMColorPickerDelegate {
         setupButton(btnCountColor, color: app.screenParam["count_color"] as? UIColor ?? UIColor.white)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // この画面の呼び出し元のViewController（CameraViewController）のViewWillAppearが呼ばれるようにする
+        guard let prev_view = presentingViewController else {
+            return
+        }
+        prev_view.beginAppearanceTransition(true, animated: animated)
+        prev_view.endAppearanceTransition()
+    }
+
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
         objc_sync_enter(lockBtnTouchedDown)
         // colorPickerで色選択されたときに呼ばれる関数
