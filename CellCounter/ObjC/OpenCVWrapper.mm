@@ -212,8 +212,6 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     cv::cvtColor(image, image, CV_BGR2RGB);
     UIImage* img = MatToUIImage(image);
     return img;
-//    UIImageView* ImageView = [[UIImageView alloc] initWithImage:img];
-//    [self->cvCamera.parentView addSubview:ImageView];
 }
 
 - (cv::Mat) loadDummyImage {
