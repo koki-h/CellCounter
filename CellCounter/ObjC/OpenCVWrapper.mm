@@ -216,11 +216,29 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 
 - (cv::Mat) loadDummyImage {
     UIImage* image = [UIImage imageNamed:@"dummyCellImage.jpg"];
-    image = [image partialImageOfRect:cvCamera.parentView.frame];
+    image = [self cropToFill:image frame:cvCamera.parentView.frame];
     // UIImage -> cv::Mat
     cv::Mat mat;
     UIImageToMat(image, mat);
     cv::cvtColor(mat, mat, CV_RGB2BGR);
     return mat;
+}
+
+- (UIImage *) cropToFill: (UIImage *) image frame: (CGRect) r {
+    //imageを解像度を変えずにトリミングしてrの枠に合わせる
+    CGFloat height = 0.0;
+    CGFloat width = 0.0;
+    if (image.size.height < image.size.width) {
+        //横が長い場合、右を切って縦方向を縮小
+        height = image.size.width * (r.size.height / r.size.width);
+        width = image.size.width;
+    } else {
+        //縦が長い場合下を切って横方向を縮小
+        height = image.size.height;
+        width = image.size.height * (r.size.width / r.size.height);
+    }
+    CGRect new_rect = CGRectMake(0,0,width,height);
+    image = [image partialImageOfRect:new_rect];
+    return image;
 }
 @end
