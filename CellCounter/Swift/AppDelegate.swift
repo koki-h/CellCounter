@@ -11,7 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     #if arch(i386) || arch(x86_64)
-    let DEBUG = true
+    let DEBUG = true //シミュレーターのときは必ずデバッグモードにする
     #else
     let DEBUG = false
     #endif
