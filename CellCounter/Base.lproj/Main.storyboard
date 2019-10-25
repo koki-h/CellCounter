@@ -23,22 +23,25 @@
                                 <rect key="frame" x="0.0" y="200" width="320" height="368"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jov-CP-5ex">
-                                        <rect key="frame" x="0.0" y="268" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="218" width="320" height="150"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAQ-Yy-hWN">
-                                                <rect key="frame" x="5" y="69" width="59" height="21"/>
+                                                <rect key="frame" x="5" y="119" width="59" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA1-iM-n2y">
-                                                <rect key="frame" x="5" y="38" width="56" height="21"/>
+                                                <rect key="frame" x="5" y="48" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-am-Fag" customClass="RangeSlider" customModule="CellCounter" customModuleProvider="target">
-                                                <rect key="frame" x="150" y="32" width="165" height="33"/>
+                                                <rect key="frame" x="150" y="42" width="165" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="ulG-4v-FrM"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
                                                         <real key="value" value="0.0"/>
@@ -58,13 +61,13 @@
                                                 </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th_Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNg-R4-Ml2">
-                                                <rect key="frame" x="66" y="40" width="71.5" height="17"/>
+                                                <rect key="frame" x="66" y="50" width="71.5" height="17"/>
                                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="128" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="zlw-tb-f5T">
-                                                <rect key="frame" x="157" y="64.5" width="160" height="31"/>
+                                                <rect key="frame" x="157" y="114.5" width="160" height="31"/>
                                                 <connections>
                                                     <action selector="threshold_l_changed:" destination="BYZ-38-t0r" eventType="valueChanged" id="JPx-6i-rDG"/>
                                                 </connections>
@@ -77,7 +80,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th_Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtN-JZ-9a8" userLabel="lbl Light Threshold">
-                                                <rect key="frame" x="69" y="71" width="82" height="17"/>
+                                                <rect key="frame" x="69" y="121" width="82" height="17"/>
                                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -86,16 +89,15 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="KC4-am-Fag" secondAttribute="trailing" constant="5" id="37Z-LJ-JoH"/>
-                                            <constraint firstItem="yAQ-Yy-hWN" firstAttribute="top" secondItem="EA1-iM-n2y" secondAttribute="bottom" constant="10" id="8Cz-24-fa7"/>
+                                            <constraint firstItem="yAQ-Yy-hWN" firstAttribute="top" secondItem="EA1-iM-n2y" secondAttribute="bottom" constant="50" id="8Cz-24-fa7"/>
                                             <constraint firstItem="yAQ-Yy-hWN" firstAttribute="leading" secondItem="jov-CP-5ex" secondAttribute="leading" constant="5" id="CnY-Oh-wtk"/>
                                             <constraint firstItem="Ynq-F3-WIq" firstAttribute="leading" secondItem="jov-CP-5ex" secondAttribute="leading" constant="5" id="JnS-Xn-JDL"/>
-                                            <constraint firstAttribute="height" constant="100" id="KHf-Wk-Jkk"/>
+                                            <constraint firstAttribute="height" constant="150" id="KHf-Wk-Jkk"/>
                                             <constraint firstItem="KC4-am-Fag" firstAttribute="leading" secondItem="SNg-R4-Ml2" secondAttribute="trailing" constant="12.5" id="MCh-p1-hrj"/>
                                             <constraint firstItem="SNg-R4-Ml2" firstAttribute="leading" secondItem="EA1-iM-n2y" secondAttribute="trailing" constant="5" id="Sff-vK-QA9"/>
                                             <constraint firstItem="KC4-am-Fag" firstAttribute="centerY" secondItem="SNg-R4-Ml2" secondAttribute="centerY" id="Spn-jn-07v"/>
                                             <constraint firstAttribute="bottom" secondItem="yAQ-Yy-hWN" secondAttribute="bottom" constant="10" id="Vei-Je-mnV"/>
                                             <constraint firstItem="EA1-iM-n2y" firstAttribute="leading" secondItem="jov-CP-5ex" secondAttribute="leading" constant="5" id="b1G-FH-3wN"/>
-                                            <constraint firstAttribute="bottom" secondItem="KC4-am-Fag" secondAttribute="bottom" constant="35" id="c4M-Bo-W7x"/>
                                             <constraint firstItem="EA1-iM-n2y" firstAttribute="centerY" secondItem="SNg-R4-Ml2" secondAttribute="centerY" id="dBY-AC-wXE"/>
                                             <constraint firstItem="xtN-JZ-9a8" firstAttribute="leading" secondItem="yAQ-Yy-hWN" secondAttribute="trailing" constant="5" id="eV6-mm-iwZ"/>
                                             <constraint firstItem="xtN-JZ-9a8" firstAttribute="centerY" secondItem="yAQ-Yy-hWN" secondAttribute="centerY" id="eVN-dP-9IR"/>
