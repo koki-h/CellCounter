@@ -114,8 +114,12 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     @try {
         //明るさによって二値化し、境界線を取得
         int th_lightness = [[_param objectForKey: @"th_lightness"] intValue];
+        cv::Mat preprocessed_image = [self preprocessForBinarize:image];
+// for debug ↓ 前処理した画像を表示する
+//        cv::cvtColor(preprocessed_image, image, CV_GRAY2BGR); // debug
+// for degug ↑
         std::vector<std::vector<cv::Point>> contours =
-            [self getLightnessContours:image th_lightness:th_lightness];
+            [self getLightnessContours:preprocessed_image th_lightness:th_lightness];
 
         // しきい値の範囲を外れる面積の輪郭線をカウントから除外する
         double th_area_min = [[_param objectForKey: @"th_area_min"] doubleValue];
@@ -139,6 +143,13 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     @finally {
         [_lock unlock];
     }
+}
+
+- (cv::Mat) preprocessForBinarize: (cv::Mat) src {
+    cv::Mat dst = src.clone();
+    cv::cvtColor(dst, dst, CV_BGR2GRAY);
+    cv::GaussianBlur(dst, dst, cv::Size(5,5), 1);
+    return dst;
 }
 
 - (cv::Scalar) uiColorToCvScalarBGR: (UIColor*) color {
@@ -185,15 +196,12 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 
 - (cv::Mat) binarizeByLightness:(cv::Mat)src l_threshold:(int)l_threshold
 {
-    cv::Mat mid;
-    cv::cvtColor(src, mid, CV_BGR2GRAY);
-    cv::GaussianBlur(mid, mid, cv::Size(5,5), 1);
     cv::Mat dst(src.rows,src.cols,CV_8UC1); // 結果保存用
     for (int y=0; y<dst.rows; y++) {
         for (int x=0; x < dst.cols; x++) {
-            int index = (int) mid.step * y + x;
+            int index = (int) src.step * y + x;
             int dst_index = (int) dst.step * y + x;
-            int l = mid.data[index+1];
+            int l = src.data[index+1];
             if (l > l_threshold) {
                 dst.data[dst_index] = 255;
             } else {
