@@ -20,7 +20,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     CvVideoCamera *cvCamera;
     NSLock *_lock;
     NSDictionary *_param;
-
+    cv::Mat dummyImageMat; //デバッグモードで使用するダミー画像
 }
 @end
 
@@ -207,21 +207,21 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 // テスト用
 //ダミー画像を使って画像処理する
 - (UIImage *)processDummyImage {
-    cv::Mat image = [self loadDummyImage];
-    [self processImageInner:image];
-    cv::cvtColor(image, image, CV_BGR2RGB);
-    UIImage* img = MatToUIImage(image);
+    if (!self->dummyImageMat.data) {
+        [self loadDummyImage];
+    }
+    cv::Mat mat = self->dummyImageMat;
+    cv::cvtColor(mat, mat, CV_RGB2BGR);
+    [self processImageInner:mat];
+    cv::cvtColor(mat, mat, CV_BGR2RGB);
+    UIImage* img = MatToUIImage(mat);
     return img;
 }
 
-- (cv::Mat) loadDummyImage {
+- (void) loadDummyImage {
     UIImage* image = [UIImage imageNamed:@"dummyCellImage.jpg"];
     image = [self cropToFill:image frame:cvCamera.parentView.frame];
-    // UIImage -> cv::Mat
-    cv::Mat mat;
-    UIImageToMat(image, mat);
-    cv::cvtColor(mat, mat, CV_RGB2BGR);
-    return mat;
+    UIImageToMat(image, self->dummyImageMat);    // UIImage -> cv::Mat
 }
 
 - (UIImage *) cropToFill: (UIImage *) image frame: (CGRect) r {
