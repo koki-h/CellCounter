@@ -33,6 +33,7 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
     let openCv = OpenCVWrapper()
     var app:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     var openCVStarted = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         openCv.createCamera(withParentView: imgView)
@@ -53,8 +54,12 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         if app.DEBUG {
-            imgView.image = openCv.processDummyImage() //debug
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                                              block: {_ in
+                                                self.imgView.image = self.openCv.processDummyImage()
+            })
             return
         }
 
@@ -97,9 +102,6 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         app.openCvParam["th_lightness"] = Int(sender.value)
         lblLightThreshold.text = String(format:"%3d", Int(sender.value))
         openCv.setParam(app.openCvParam);
-        if app.DEBUG {
-            imgView.image = openCv.processDummyImage() //debug
-        }
     }
 
     @IBAction func threshold_a_changed(_ sender: RangeSlider) {
@@ -107,9 +109,6 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         app.openCvParam["th_area_max"] = sender.upperValue
         lblAreaThreshold.text = String(format:"%4d-%4d", Int(sender.lowerValue), Int(sender.upperValue))
         openCv.setParam(app.openCvParam);
-        if app.DEBUG {
-            imgView.image = openCv.processDummyImage() //debug
-        }
     }
     
     //ステータスバーを隠す
