@@ -186,12 +186,12 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (cv::Mat) binarizeByLightness:(cv::Mat)src l_threshold:(int)l_threshold
 {
     cv::Mat mid;
-    cv::cvtColor(src, mid, CV_BGR2HLS);
+    cv::cvtColor(src, mid, CV_BGR2GRAY);
     cv::GaussianBlur(mid, mid, cv::Size(5,5), 1);
     cv::Mat dst(src.rows,src.cols,CV_8UC1); // 結果保存用
     for (int y=0; y<dst.rows; y++) {
         for (int x=0; x < dst.cols; x++) {
-            int index = (int) mid.step * y + (x * 3);
+            int index = (int) mid.step * y + x;
             int dst_index = (int) dst.step * y + x;
             int l = mid.data[index+1];
             if (l > l_threshold) {
