@@ -64,7 +64,7 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         super.viewDidAppear(animated)
 
         if app.DEBUG {
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+            Timer.scheduledTimer(withTimeInterval: 1/30, repeats: true,
                                               block: {_ in
                                                 self.imgView.image = self.openCv.processDummyImage()
             })
