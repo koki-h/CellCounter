@@ -43,6 +43,11 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         openCv.delegate = self
         slLightThreshold.value = Float(app.openCvParam["th_lightness"] as! Double)
         lblLightThreshold.text = String(format:"%3d", Int(slLightThreshold.value))
+        if (app.openCvParam["th_lightness_auto"] as! Bool) {
+            lblAuto.text = ":ON"
+        } else {
+            lblAuto.text = ":OFF"
+        }
         slAreaThreshold.lowerValue = app.openCvParam["th_area_min"] as! Double
         slAreaThreshold.upperValue = app.openCvParam["th_area_max"] as! Double
         lblAreaThreshold.text = String(format:"%3d-%3d", Int(slAreaThreshold.lowerValue), Int(slAreaThreshold.upperValue))
