@@ -180,7 +180,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (std::vector<std::vector<cv::Point>>) getLightnessContours: (cv::Mat) src th_lightness: (int) th_lightness {
     cv::Mat dst;
     int l_threshold = th_lightness;
-    dst = [self binarizeByLightness:src l_threshold:l_threshold];
+    cv::threshold(src, dst, l_threshold, 255, cv::THRESH_BINARY);
     std::vector< std::vector<cv::Point> > contours;
     cv::findContours(dst, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
     return contours;
@@ -192,24 +192,6 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
         cv::drawContours(canvas, contours, -1, color,2);
     }
     return canvas;
-}
-
-- (cv::Mat) binarizeByLightness:(cv::Mat)src l_threshold:(int)l_threshold
-{
-    cv::Mat dst(src.rows,src.cols,CV_8UC1); // 結果保存用
-    for (int y=0; y<dst.rows; y++) {
-        for (int x=0; x < dst.cols; x++) {
-            int index = (int) src.step * y + x;
-            int dst_index = (int) dst.step * y + x;
-            int l = src.data[index+1];
-            if (l > l_threshold) {
-                dst.data[dst_index] = 255;
-            } else {
-                dst.data[dst_index] = 0;
-            }
-        }
-    }
-    return dst;
 }
 
 // テスト用
