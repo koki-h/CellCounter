@@ -152,7 +152,13 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (cv::Mat) preprocessForBinarize: (cv::Mat) src {
     cv::Mat dst = src.clone();
     cv::cvtColor(dst, dst, CV_BGR2GRAY);
-    cv::GaussianBlur(dst, dst, cv::Size(5,5), 1);
+     // CLAHE (Contrast Limited Adaptive Histogram Equalization：適用的ヒストグラム平坦化)による平滑化
+    cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE();
+    clahe->setClipLimit(2);
+    clahe->setTilesGridSize(cv::Size(8, 8));
+    clahe->apply(dst, dst);
+//    cv::GaussianBlur(dst, dst, cv::Size(5, 5), 1); // ガウシアンフィルタによる平滑化
+//    cv::equalizeHist (dst, dst); // for debug 平滑化の効果を見るためにコントラストを強める
     return dst;
 }
 
