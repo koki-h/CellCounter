@@ -27,6 +27,7 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
     @IBOutlet weak var controleView: UIView!         // 設定スライダー等が載ったビュー
     @IBOutlet weak var slLightThreshold: UISlider!   // 明るさのしきい値を設定するスライダー
     @IBOutlet weak var lblLightThreshold: UILabel!   // 明るさのしきい値を表示するラベル
+    @IBOutlet weak var lblAuto: UILabel!             // 明るさしきい値の自動設定モードON/OFF
     @IBOutlet weak var slAreaThreshold: RangeSlider! // 面積のしきい値を設定するスライダー
     @IBOutlet weak var lblAreaThreshold: UILabel!    // 面積のしきい値を表示するラベル
     @IBOutlet weak var dispCounterView: UIView!      // カウントを表示するラベルが載ったビュー
@@ -109,6 +110,7 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         app.openCvParam["th_lightness_auto"] = false
         app.openCvParam["th_lightness"] = Int(sender.value)
         lblLightThreshold.text = String(format:"%3d", Int(sender.value))
+        lblAuto.text = ":OFF"
         openCv.setParam(app.openCvParam);
     }
 
@@ -121,6 +123,7 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
 
     @IBAction func auto_th_l_down(_ sender: Any) {
         app.openCvParam["th_lightness_auto"] = true
+        lblAuto.text = ":ON"
         openCv.setParam(app.openCvParam);
     }
 
