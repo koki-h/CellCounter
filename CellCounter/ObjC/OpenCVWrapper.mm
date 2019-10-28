@@ -233,14 +233,30 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     //imageを解像度を変えずにトリミングしてrの枠に合わせる
     CGFloat height = 0.0;
     CGFloat width = 0.0;
+    CGFloat tmp_height = image.size.width * (r.size.height / r.size.width);  // 画像の幅を維持する場合の画像の高さ
+    CGFloat tmp_width = image.size.height * (r.size.width / r.size.height);  // 画像の高さを維持する場合の画像の幅
     if (image.size.height < image.size.width) {
-        //横が長い場合、右を切って縦方向を縮小
-        height = image.size.width * (r.size.height / r.size.width);
-        width = image.size.width;
+        // 横長の画像の場合
+        if (tmp_height > image.size.height) {
+            // 幅を維持する場合の画像の高さが元の画像の高さを超えるときには画像の高さを維持して右側を切る
+            height = image.size.height;
+            width = tmp_width;
+        } else {
+            // 幅を維持する場合の画像の高さが元の画像の高さを超えないときには画像の幅を維持して下側を切る
+            height = tmp_height;
+            width = image.size.width;
+        }
     } else {
-        //縦が長い場合下を切って横方向を縮小
-        height = image.size.height;
-        width = image.size.height * (r.size.width / r.size.height);
+        // 縦長の画像の場合
+        if (tmp_width > image.size.width) {
+            // 高さを維持する場合の画像の幅が元の画像の幅を超えるときには画像の幅を維持して下側を切る
+            height = tmp_height;
+            width = image.size.width;
+        } else {
+            // 高さを維持する場合の画像の幅が元の画像の幅を超えないときには画像の高さを維持して右側を切る
+            height = image.size.height;
+            width = tmp_width;
+        }
     }
     CGRect new_rect = CGRectMake(0,0,width,height);
     image = [image partialImageOfRect:new_rect];
