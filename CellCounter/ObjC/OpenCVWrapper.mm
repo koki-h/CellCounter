@@ -192,7 +192,6 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     if (th_auto) {
         double th = cv::threshold(src, dst, 0, 255, cv::THRESH_BINARY + cv::THRESH_OTSU); //大津の2値化
         *otsu_th = th;
-        printf("Otsu's threshold:%f\n",th);
     } else {
         int l_threshold = th_lightness;
         cv::threshold(src, dst, l_threshold, 255, cv::THRESH_BINARY);
