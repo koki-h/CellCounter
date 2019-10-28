@@ -47,13 +47,13 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
-                                                        <real key="value" value="3000"/>
+                                                        <real key="value" value="9000"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="upperValue">
-                                                        <real key="value" value="2000"/>
+                                                        <real key="value" value="6000"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lowerValue">
-                                                        <real key="value" value="1000"/>
+                                                        <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
