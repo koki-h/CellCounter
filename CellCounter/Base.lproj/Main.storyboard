@@ -50,7 +50,7 @@
                                                         <real key="value" value="9000"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="upperValue">
-                                                        <real key="value" value="6000"/>
+                                                        <real key="value" value="9000"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lowerValue">
                                                         <real key="value" value="0.0"/>
