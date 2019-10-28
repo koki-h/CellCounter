@@ -14,7 +14,9 @@
 // DONE: 背景色を変更すると境界線色に影響する問題を修正する->背景色は黒固定に
 // DONE: ダミー画像を使用して処理を実行できるようにする
 // DONE: デバッグモードだとカウントの文字色変更が反映されない
-// TODO: シミュレーターでもうまく動くようにする（スクリーンショット作成のため）
+// DONE: シミュレーターでもうまく動くようにする（スクリーンショット作成のため）
+// DONE: 画面内の明るさにムラがある場合にもうまく2値化できるようにする（大津の2値化を試す）
+// -> 適応的二値化はうまく行かない。大津の2値化は適切なしきい値を見つけてくれるが、今回のような微妙な明るさのムラはそれほど補正できない。
 // TODO: 画面表示をなるべくカッコよく調整する
 
 import UIKit
@@ -95,10 +97,16 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
     func didProcessImage(_ result: [AnyHashable : Any]) {
         DispatchQueue.main.async {
             self.lblCellCount.text = String(result["contours_count"] as! Int)
+            if (self.app.openCvParam["th_lightness_auto"] as! Bool == true) {
+                let otsu_th = result["otsu_th"] as! Float
+                self.slLightThreshold.value = otsu_th
+                self.lblLightThreshold.text = String(format:"%3d", Int(otsu_th))
+            }
         }
     }
 
     @IBAction func threshold_l_changed(_ sender: UISlider) {
+        app.openCvParam["th_lightness_auto"] = false
         app.openCvParam["th_lightness"] = Int(sender.value)
         lblLightThreshold.text = String(format:"%3d", Int(sender.value))
         openCv.setParam(app.openCvParam);
@@ -110,7 +118,12 @@ class CameraViewController: UIViewController, OpenCVWrapperDelegate {
         lblAreaThreshold.text = String(format:"%4d-%4d", Int(sender.lowerValue), Int(sender.upperValue))
         openCv.setParam(app.openCvParam);
     }
-    
+
+    @IBAction func auto_th_l_down(_ sender: Any) {
+        app.openCvParam["th_lightness_auto"] = true
+        openCv.setParam(app.openCvParam);
+    }
+
     //ステータスバーを隠す
     override var prefersStatusBarHidden: Bool {
         return true

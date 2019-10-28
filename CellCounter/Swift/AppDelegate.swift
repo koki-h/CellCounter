@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var openCvParam: Dictionary = ["th_lightness": 128.0,
                                    "th_area_min":0.0,
                                    "th_area_max":2000.0,
+                                   "th_lightness_auto":true,
                                    "contour_color":UIColor(["r":0.0,"g":1.0,"b":0.0,"a":1.0]) as Any] as [String:Any]
 
     // 画面表示関連パラメータ
@@ -70,6 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let value = UserDefaults.standard.object(forKey: "cv_th_area_max") {
             openCvParam["th_area_max"] = value
         }
+        if let value = UserDefaults.standard.object(forKey: "cv_th_lightness_auto") {
+            openCvParam["th_lightness_auto"] = value
+        }
         //配列で保存されていた色設定をUIColorに変換する
         // 境界線の色
         if let value = UserDefaults.standard.dictionary(forKey: "cv_contour_color") {
@@ -95,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(openCvParam["th_lightness"], forKey: "cv_th_lightness")
         UserDefaults.standard.set(openCvParam["th_area_min"], forKey: "cv_th_area_min")
         UserDefaults.standard.set(openCvParam["th_area_max"], forKey: "cv_th_area_max")
+        UserDefaults.standard.set(openCvParam["th_lightness_auto"], forKey: "cv_th_lightness_auto")
         // UIColorはUserDefaultsに保存できないのでDictionaryに変換する
         saveColorParam(value: openCvParam["contour_color"] as! UIColor, forKey: "cv_contour_color")
     }

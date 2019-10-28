@@ -114,12 +114,14 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     @try {
         //明るさによって二値化し、境界線を取得
         int th_lightness = [[_param objectForKey: @"th_lightness"] intValue];
+        BOOL th_lightness_auto = [[_param objectForKey: @"th_lightness_auto"] intValue];
         cv::Mat preprocessed_image = [self preprocessForBinarize:image];
 // for debug ↓ 前処理した画像を表示する
 //        cv::cvtColor(preprocessed_image, image, CV_GRAY2BGR); // debug
 // for degug ↑
+        double otsu_th = 0;
         std::vector<std::vector<cv::Point>> contours =
-            [self getLightnessContours:preprocessed_image th_lightness:th_lightness];
+            [self getLightnessContours:preprocessed_image th_lightness:th_lightness th_auto:th_lightness_auto otsu_th:&otsu_th];
 
         // しきい値の範囲を外れる面積の輪郭線をカウントから除外する
         double th_area_min = [[_param objectForKey: @"th_area_min"] doubleValue];
@@ -136,7 +138,9 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 //        cv::rectangle(image, r, cv_contour_color,10);
 //        for debug↑
         long cellcount = contours.size();
-        NSDictionary *result = @{@"contours_count":  [NSNumber numberWithLong: cellcount]};
+        NSDictionary *result = @{
+            @"contours_count":  [NSNumber numberWithLong: cellcount],
+            @"otsu_th": [NSNumber numberWithDouble: otsu_th]};
         
         [self.delegate didProcessImage: result];
     }
@@ -177,10 +181,16 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     return contours_filtered;
 }
 
-- (std::vector<std::vector<cv::Point>>) getLightnessContours: (cv::Mat) src th_lightness: (int) th_lightness {
+- (std::vector<std::vector<cv::Point>>) getLightnessContours: (cv::Mat) src th_lightness: (int) th_lightness th_auto: (BOOL) th_auto  otsu_th:(double *) otsu_th {
     cv::Mat dst;
-    int l_threshold = th_lightness;
-    cv::threshold(src, dst, l_threshold, 255, cv::THRESH_BINARY);
+    if (th_auto) {
+        double th = cv::threshold(src, dst, 0, 255, cv::THRESH_BINARY + cv::THRESH_OTSU); //大津の2値化
+        *otsu_th = th;
+        printf("Otsu's threshold:%f\n",th);
+    } else {
+        int l_threshold = th_lightness;
+        cv::threshold(src, dst, l_threshold, 255, cv::THRESH_BINARY);
+    }
     std::vector< std::vector<cv::Point> > contours;
     cv::findContours(dst, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
     return contours;
