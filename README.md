@@ -15,16 +15,19 @@
 - Auto: タップするとth Lightの値を自動で設定します。(自動で設定するときには"ON"と表示されます。th Lightのスライダーを動かすと"OFF"になります)
 - config: 設定画面を開き、色の設定を行います。細胞の外周の色と、個数をカウントした数字の色を変更できます。
 
-細胞カウント数とスライダー部分は画面をタップすると非表示になります。
+細胞カウント数とスライダー部分は画面をタップすると非表示になります。<br>
 ![数字なし - iPhone 11 Pro Max - 2019-10-28 at 15 36 26](https://user-images.githubusercontent.com/52752/67741566-ebb5b480-fa5c-11e9-8718-35e52f87154c.png)
 ![スライダーなし - iPhone 11 Pro Max - 2019-10-28 at 15 36 22](https://user-images.githubusercontent.com/52752/67741564-eb1d1e00-fa5c-11e9-932a-1996d96a0c68.png)
 ![数字＆スライダーなし - iPhone 11 Pro Max - 2019-10-28 at 15 36 24](https://user-images.githubusercontent.com/52752/67741567-ebb5b480-fa5c-11e9-8ad5-a37813b5f1e8.png)
 
+### 色設定画面
 configをタップすると細胞の外周の色(Color for edges)と個数をカウントした数字の色(Color for count)を設定する画面が開きます。
-- 色のついた四角形の部分をタップしてカラーピッカーを開き、それぞれの色を設定します
-- Doneをタップすると元の画面に戻ります。
+色のついた四角形の部分をタップしてカラーピッカーを開き、それぞれの色を設定します。
+Doneをタップすると元の画面に戻ります。<br>
 ![設定画面 - iPhone 11 Pro Max - 2019-10-28 at 15 36 30](https://user-images.githubusercontent.com/52752/67741562-eb1d1e00-fa5c-11e9-8628-9563506c9e46.png)
 
-カラーピッカーでは任意の色をタップして設定色を選択します。色相、明るさ、透明度を設定できます。プリセットされた色の選択や、RGBでの色設定も可能です。
+
+### カラーピッカー画面
+カラーピッカーでは任意の色をタップして設定色を選択します。色相、明るさ、透明度を設定できます。プリセットされた色の選択や、RGBでの色設定も可能です。<br>
 ![カラーピッカー - iPhone 11 Pro Max - 2019-10-28 at 15 36 34](https://user-images.githubusercontent.com/52752/67741561-eb1d1e00-fa5c-11e9-9f33-1458db24ada2.png)
 
