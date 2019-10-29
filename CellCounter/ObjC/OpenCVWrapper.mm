@@ -21,6 +21,7 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     NSLock *_lock;
     NSDictionary *_param;
     cv::Mat dummyImageMat; //デバッグモードで使用するダミー画像
+    UIColor *colors[5];
 }
 @end
 
@@ -31,6 +32,11 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
     if (self) {
         // NSLock インスタンスを生成します。
         _lock = [[NSLock alloc] init];
+        colors[0] = UIColor.whiteColor;
+        colors[1] = UIColor.cyanColor;
+        colors[2] = UIColor.magentaColor;
+        colors[3] = UIColor.greenColor;
+        colors[4] = UIColor.yellowColor;
     }
     return self;
 }
@@ -204,7 +210,12 @@ OpenCVWrapper() <CvVideoCameraDelegate> {
 - (cv::Mat) drawContours:(cv::Mat) canvas contours:(std::vector<std::vector<cv::Point>>) contours color:(cv::Scalar) color
 {
     if (contours.size() > 1) {
-        cv::drawContours(canvas, contours, -1, color,2);
+        for(int i = 0; i < contours.size(); i++ ){
+            int color_index = abs((int)arc4random()%5);
+            UIColor *contour_color = self->colors[color_index];
+            cv::Scalar cv_contour_color = [self uiColorToCvScalarBGR:contour_color];
+            cv::drawContours(canvas, contours, i, cv_contour_color,2);
+        }
     }
     return canvas;
 }
