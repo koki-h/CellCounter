@@ -41,3 +41,8 @@ Doneをタップすると元の画面に戻ります。<br>
 <kbd>
 ![カラーピッカー - iPhone 11 Pro Max - 2019-10-28 at 15 36 34](https://user-images.githubusercontent.com/52752/67741561-eb1d1e00-fa5c-11e9-9f33-1458db24ada2.png)
 </kbd>
+
+## ビルド方法
+- Xcodeが必要です。まずこちらをインストールしてください。
+- CellCounter.xcodeprojをXcodeで開き、メニューから `Product`→`Run` を実行するとデバッグ用のビルドが作成されたあと、iOSシミュレータが立ち上がりCellCounterが実行されます。シミュレータではカメラ画像の代わりにあらかじめ細胞懸濁液を撮影した画像が表示され、この画像に対して検出処理が実行されます。
+- 実機で実行する場合はプロジェクトプロパティ画面で`TARGETS`→`CellCounter`を選択し、`Sigining & Capability` タブに表示される`Team`や`Bundle Identifier`を適宜変更してください。
