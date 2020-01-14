@@ -8,7 +8,8 @@
 ### メイン画面
 アプリを起動し、懸濁液を撮影すると自動的に細胞の外周がマーキングされ、個数が画面右上に表示されます。<br>
 <kbd>
-![基本画面 - iPhone 11 Pro Max - 2020-01-14 at 21 52 41](https://user-images.githubusercontent.com/52752/72346233-de819b00-3718-11ea-80da-f606fa9b0ebc.png)
+![基本画面 - iPhone 11 Pro Max - 2020-01-14 at 21 52 41](https://user-images.githubusercontent.com/52752/72347039-92375a80-371a-11ea-94bb-2c9da9255bf2.png)
+
 </kbd>
 
 画面の中の明るさに基づいて細胞を判別します。画面下のスライダーを操作して判別の基準を調整します。
@@ -19,8 +20,7 @@
 
 細胞カウント数とスライダー部分は画面をタップすると非表示になります。<br>画面の上の方をタップすると細胞カウント数が、下の方をタップするとスライダー部分が非表示になります。再度タップすると再び表示されます<br>
 <kbd>
-![数字なし - iPhone 11 Pro Max - 2020-01-14 at 21 55 43](https://user-images.githubusercontent.com/52752/72346232-de819b00-3718-11ea-9c12-84df5f4b2efb.png)
-
+![数字なし - iPhone 11 Pro Max - 2020-01-14 at 21 55 43](https://user-images.githubusercontent.com/52752/72347048-95cae180-371a-11ea-86d1-e307dca0cdd9.png)
 </kbd>
 <kbd>
 ![スライダーなし - iPhone 11 Pro Max - 2019-10-28 at 15 36 22](https://user-images.githubusercontent.com/52752/67741564-eb1d1e00-fa5c-11e9-932a-1996d96a0c68.png)
