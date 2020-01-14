@@ -1,6 +1,9 @@
 # CellCounter
 九州大学 熱物質移動研究室 OPEN-SOURCE BIOWARE PROJECT 細胞カウントアプリ
 
+[![Download_on_the_App_Store_Badge_US-UK_blk_092917](https://user-images.githubusercontent.com/52752/72348081-e93e2f00-371c-11ea-84d8-d34b3a9d8d24.png)
+](https://apps.apple.com/jp/app/id1482879978)
+
 ## 概要
 九州大学 熱物質移動研究室 OPEN-SOURCE BIOWARE PROJECT https://bioware.sakura.ne.jp/index.html の一環として作成された細胞カウント用のiOSアプリです。プレパラート上に配置した細胞の懸濁液を撮影すると撮影範囲に含まれる細胞を自動的に計数します。
 
