@@ -52,7 +52,7 @@ Doneをタップすると元の画面に戻ります。<br>
 - Xcodeが必要です。まずこちらをインストールしてください。
 - iOS用のOpenCVライブラリ（opencv2.framework）をCellCounterディレクトリの中に置いてください。
   - iOS用のOpenCVライブラリは https://opencv.org/releases/ から入手できます。「iOS Pack」と書かれたリンクからダウンロードしてください。ダウンロードされたアーカイブの中に `opencv2.framework` というディレクトリがあるので、それをCellCounterディレクトリの中に移動させてください。
-  - CellCounterの最初のバージョンはOpenCV-4.1.1を使用しています。
+  - CellCounterの最初のバージョン（2020年11月現在App Storeで公開されているバージョン）はOpenCV-4.1.1を使用しています。
   - 2020年11月現在最新であるOpenCV-4.5.0を使用しても動作することを確認しています。
 - CellCounter.xcodeprojをXcodeで開き、メニューから `Product`→`Run` を実行するとデバッグ用のビルドが作成されたあと、iOSシミュレータが立ち上がりCellCounterが実行されます。シミュレータではカメラ画像の代わりにあらかじめ細胞懸濁液を撮影した画像が表示され、この画像に対して検出処理が実行されます。
 - 実機で実行する場合はプロジェクトプロパティ画面で`TARGETS`→`CellCounter`を選択し、`Sigining & Capability` タブに表示される`Team`や`Bundle Identifier`を適宜変更してください。
